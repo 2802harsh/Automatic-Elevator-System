@@ -174,7 +174,7 @@ public class Configure extends javax.swing.JFrame {
 //        
         String wt = (String)weight.getText();
         Double maxWeight = Double.parseDouble(wt);
-        Elevator.setMaxPeople(maxNumPeople);
+        Elevator.setMaxWeight(maxWeight);
 ////        
 ////        Double maxWeight = Double.parseDouble(weight.getText());
 ////        Elevator.setMaxWeight(maxWeight);
