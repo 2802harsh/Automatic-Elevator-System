@@ -5,7 +5,7 @@
  */
 package oomproject;
 
-import backend.Elevator;
+import backend.ElevatorControl;
 
 /**
  *
@@ -170,18 +170,11 @@ public class Configure extends javax.swing.JFrame {
         // TODO add your handling code here:
         String num = (String)people.getSelectedItem();
         int maxNumPeople = Integer.parseInt(num);
-        Elevator.setMaxPeople(maxNumPeople);
+        ElevatorControl.setMaxPeople(maxNumPeople);
 //        
         String wt = (String)weight.getText();
         Double maxWeight = Double.parseDouble(wt);
-        Elevator.setMaxWeight(maxWeight);
-////        
-////        Double maxWeight = Double.parseDouble(weight.getText());
-////        Elevator.setMaxWeight(maxWeight);
-//        
-////        String val = people.setSelectedItem();
-        peopleLabel.setText(String.valueOf(Elevator.getMaxPeople()));
-        weightLabel.setText(String.valueOf(Elevator.getMaxWeight()));
+        ElevatorControl.setMaxWeight(maxWeight);
     }//GEN-LAST:event_updateActionPerformed
 
     /**

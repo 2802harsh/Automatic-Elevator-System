@@ -5,33 +5,28 @@
  */
 package backend;
 
+import oomproject.Initiate;
+
 /**
  *
  * @author HP
  */
-public class Elevator {
-    protected static int maxPeople = 5;
-    protected static Double maxWeight = 800.0;
+public class Elevator extends ElevatorControl {
+    protected String doorStatus = "Open";
+    protected Double weight = 0.0;
+    protected int people = 0;
     
-    public static void setMaxPeople(int people)
-    {
-        maxPeople = people;
-    }
-    public static void setMaxWeight(Double weight)
-    {
-        maxWeight = weight;
-    }
-    public static int getMaxPeople()
-    {
-        return maxPeople;
-    }
-    public static Double getMaxWeight()
-    {
-        return maxWeight;
-    }
     
-    public static void main(String args[])
+    public int getPeople()
     {
-        System.out.println(getMaxPeople());
+        return people;
+    }
+    public Double getWeight()
+    {
+        return weight;
+    }
+    public String getDoorStatus()
+    {
+        return doorStatus;
     }
 }

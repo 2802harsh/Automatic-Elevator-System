@@ -5,17 +5,31 @@
  */
 package oomproject;
 
+import java.util.concurrent.Executors;
+import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.ScheduledFuture;
+import java.util.concurrent.TimeUnit;
+
+import backend.Elevator;
+
 /**
  *
  * @author HP
  */
 public class Initiate extends javax.swing.JFrame {
+    
+    Elevator elevator = new Elevator();
+    ScheduledExecutorService executor = Executors.newScheduledThreadPool(1);
+    
+//    Timer t = new Timer();
+//    t.schedule(ElevatorUpdated(), 0, 2000);
 
     /**
      * Creates new form Initiate
      */
     public Initiate() {
         initComponents();
+        executor.scheduleAtFixedRate(ElevatorUpdated, 0, 1, TimeUnit.SECONDS);
         setVisible(true);
         setDefaultCloseOperation(javax.swing.JFrame.DISPOSE_ON_CLOSE);
     }
@@ -33,19 +47,19 @@ public class Initiate extends javax.swing.JFrame {
         jPanel2 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
-        jLabel7 = new javax.swing.JLabel();
+        peopleLabel = new javax.swing.JLabel();
+        floorLabel = new javax.swing.JLabel();
+        weightLabel = new javax.swing.JLabel();
+        doorLabel = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
-        jTextField2 = new javax.swing.JTextField();
-        jTextField3 = new javax.swing.JTextField();
-        jTextField4 = new javax.swing.JTextField();
-        jLabel8 = new javax.swing.JLabel();
-        jLabel9 = new javax.swing.JLabel();
-        jLabel10 = new javax.swing.JLabel();
-        jLabel11 = new javax.swing.JLabel();
+        people = new javax.swing.JTextField();
+        weight = new javax.swing.JTextField();
+        doorStatus = new javax.swing.JTextField();
+        floor = new javax.swing.JTextField();
+        entering = new javax.swing.JLabel();
+        overload = new javax.swing.JLabel();
+        exiting = new javax.swing.JLabel();
+        moving = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -69,14 +83,14 @@ public class Initiate extends javax.swing.JFrame {
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 335, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(128, 128, 128))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 181, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(215, 215, 215))))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(234, 234, 234)
+                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 181, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel2Layout.createSequentialGroup()
+                        .addGap(162, 162, 162)
+                        .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 335, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -85,65 +99,65 @@ public class Initiate extends javax.swing.JFrame {
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel2)
-                .addContainerGap(50, Short.MAX_VALUE))
+                .addContainerGap(42, Short.MAX_VALUE))
         );
 
-        jLabel3.setFont(new java.awt.Font("Dubai", 1, 20)); // NOI18N
-        jLabel3.setText("Number of Persons");
+        peopleLabel.setFont(new java.awt.Font("Dubai", 1, 20)); // NOI18N
+        peopleLabel.setText("Number of Persons");
 
-        jLabel5.setFont(new java.awt.Font("Dubai", 1, 20)); // NOI18N
-        jLabel5.setText("Floor Number");
+        floorLabel.setFont(new java.awt.Font("Dubai", 1, 20)); // NOI18N
+        floorLabel.setText("Floor Number");
 
-        jLabel6.setFont(new java.awt.Font("Dubai", 1, 20)); // NOI18N
-        jLabel6.setText("Weight");
+        weightLabel.setFont(new java.awt.Font("Dubai", 1, 20)); // NOI18N
+        weightLabel.setText("Weight");
 
-        jLabel7.setFont(new java.awt.Font("Dubai", 1, 20)); // NOI18N
-        jLabel7.setText("Door Status");
+        doorLabel.setFont(new java.awt.Font("Dubai", 1, 20)); // NOI18N
+        doorLabel.setText("Door Status");
 
         jLabel4.setBackground(new java.awt.Color(234, 84, 85));
         jLabel4.setFont(new java.awt.Font("Dubai", 1, 30)); // NOI18N
         jLabel4.setText(" Overall Status ");
         jLabel4.setBorder(new javax.swing.border.MatteBorder(null));
 
-        jTextField1.setEditable(false);
-        jTextField1.setBackground(new java.awt.Color(247, 251, 252));
-        jTextField1.setFont(new java.awt.Font("Dubai", 1, 18)); // NOI18N
-        jTextField1.setText("0");
+        people.setEditable(false);
+        people.setBackground(new java.awt.Color(247, 251, 252));
+        people.setFont(new java.awt.Font("Dubai", 1, 18)); // NOI18N
+        people.setText("0");
 
-        jTextField2.setEditable(false);
-        jTextField2.setBackground(new java.awt.Color(247, 251, 252));
-        jTextField2.setFont(new java.awt.Font("Dubai", 1, 18)); // NOI18N
-        jTextField2.setText("0");
+        weight.setEditable(false);
+        weight.setBackground(new java.awt.Color(247, 251, 252));
+        weight.setFont(new java.awt.Font("Dubai", 1, 18)); // NOI18N
+        weight.setText("0");
 
-        jTextField3.setEditable(false);
-        jTextField3.setBackground(new java.awt.Color(247, 251, 252));
-        jTextField3.setFont(new java.awt.Font("Dubai", 1, 18)); // NOI18N
-        jTextField3.setText("Closed");
+        doorStatus.setEditable(false);
+        doorStatus.setBackground(new java.awt.Color(247, 251, 252));
+        doorStatus.setFont(new java.awt.Font("Dubai", 1, 18)); // NOI18N
+        doorStatus.setText("Closed");
 
-        jTextField4.setEditable(false);
-        jTextField4.setBackground(new java.awt.Color(247, 251, 252));
-        jTextField4.setFont(new java.awt.Font("Dubai", 1, 18)); // NOI18N
-        jTextField4.setText("0");
+        floor.setEditable(false);
+        floor.setBackground(new java.awt.Color(247, 251, 252));
+        floor.setFont(new java.awt.Font("Dubai", 1, 18)); // NOI18N
+        floor.setText("0");
 
-        jLabel8.setBackground(new java.awt.Color(184, 222, 111));
-        jLabel8.setFont(new java.awt.Font("Dubai", 1, 20)); // NOI18N
-        jLabel8.setForeground(new java.awt.Color(255, 248, 205));
-        jLabel8.setText("People Entering");
+        entering.setBackground(new java.awt.Color(184, 222, 111));
+        entering.setFont(new java.awt.Font("Dubai", 1, 20)); // NOI18N
+        entering.setForeground(new java.awt.Color(255, 248, 205));
+        entering.setText("People Entering");
 
-        jLabel9.setFont(new java.awt.Font("Dubai", 1, 24)); // NOI18N
-        jLabel9.setForeground(new java.awt.Color(39, 33, 33));
-        jLabel9.setText("Overload");
-        jLabel9.setEnabled(false);
+        overload.setFont(new java.awt.Font("Dubai", 1, 24)); // NOI18N
+        overload.setForeground(new java.awt.Color(39, 33, 33));
+        overload.setText("Overload");
+        overload.setEnabled(false);
 
-        jLabel10.setFont(new java.awt.Font("Dubai", 1, 20)); // NOI18N
-        jLabel10.setForeground(new java.awt.Color(255, 248, 205));
-        jLabel10.setText("People Exiting");
-        jLabel10.setEnabled(false);
+        exiting.setFont(new java.awt.Font("Dubai", 1, 20)); // NOI18N
+        exiting.setForeground(new java.awt.Color(255, 248, 205));
+        exiting.setText("People Exiting");
+        exiting.setEnabled(false);
 
-        jLabel11.setFont(new java.awt.Font("Dubai", 1, 20)); // NOI18N
-        jLabel11.setForeground(new java.awt.Color(255, 248, 205));
-        jLabel11.setText("Lift Moving");
-        jLabel11.setEnabled(false);
+        moving.setFont(new java.awt.Font("Dubai", 1, 20)); // NOI18N
+        moving.setForeground(new java.awt.Color(255, 248, 205));
+        moving.setText("Lift Moving");
+        moving.setEnabled(false);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -151,35 +165,33 @@ public class Initiate extends javax.swing.JFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, 667, Short.MAX_VALUE)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jLabel4)
-                .addGap(47, 47, 47))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addGap(41, 41, 41)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel3)
-                    .addComponent(jLabel6, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(peopleLabel)
+                    .addComponent(weightLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                        .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jLabel5, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(doorLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(floorLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(people, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(weight, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(floor, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(doorStatus, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(88, 88, 88)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(jLabel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jLabel10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jLabel11, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addContainerGap(115, Short.MAX_VALUE))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jLabel4)
+                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                .addComponent(entering, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(exiting, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addComponent(moving, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                        .addContainerGap(80, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jLabel9)
-                        .addGap(85, 85, 85))))
+                        .addComponent(overload)
+                        .addGap(133, 133, 133))))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -189,28 +201,28 @@ public class Initiate extends javax.swing.JFrame {
                 .addComponent(jLabel4)
                 .addGap(37, 37, 37)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel8))
+                    .addComponent(peopleLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 42, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(people, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(entering))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel6)
-                    .addComponent(jTextField2, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jLabel10))
+                    .addComponent(weightLabel)
+                    .addComponent(weight, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(exiting))
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(56, 56, 56)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel7)
-                            .addComponent(jTextField3, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(doorLabel)
+                            .addComponent(doorStatus, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addGap(18, 18, 18)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel5)
-                            .addComponent(jTextField4, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel9)))
+                            .addComponent(floorLabel)
+                            .addComponent(floor, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(overload)))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(18, 18, 18)
-                        .addComponent(jLabel11)))
+                        .addComponent(moving)))
                 .addGap(0, 97, Short.MAX_VALUE))
         );
 
@@ -262,24 +274,60 @@ public class Initiate extends javax.swing.JFrame {
             }
         });
     }
+    
+//    class ElevatorUpdated extends TimerTask(){
+//        @Override
+//        public void run()
+//        {
+//                // Receiving Values from elevator object
+//             int elPeople = elevator.getPeople();
+//             Double elWeight = elevator.getWeight();
+//             String elDoor = elevator.getDoorStatus();
+//
+//             // Set the values in GUI
+//             people.setText(String.valueOf(elPeople));
+//             weight.setText(String.valueOf(elWeight));
+//             doorStatus.setText(String.valueOf(elDoor));
+//        }
+//        
+//    }
+    
+    Runnable ElevatorUpdated = new Runnable() {
+        @Override
+        public void run() {
+                // Receiving Values from elevator object
+             int elPeople = elevator.getPeople();
+             Double elWeight = elevator.getWeight();
+             String elDoor = elevator.getDoorStatus();
+
+             // Set the values in GUI
+             people.setText(String.valueOf(elPeople));
+             weight.setText(String.valueOf(elWeight));
+             doorStatus.setText(String.valueOf(elDoor));
+        }
+    };
+
+    
+    
+    
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel doorLabel;
+    private javax.swing.JTextField doorStatus;
+    private javax.swing.JLabel entering;
+    private javax.swing.JLabel exiting;
+    private javax.swing.JTextField floor;
+    private javax.swing.JLabel floorLabel;
     private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel10;
-    private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
-    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
-    private javax.swing.JTextField jTextField4;
+    private javax.swing.JLabel moving;
+    private javax.swing.JLabel overload;
+    private javax.swing.JTextField people;
+    private javax.swing.JLabel peopleLabel;
+    private javax.swing.JTextField weight;
+    private javax.swing.JLabel weightLabel;
     // End of variables declaration//GEN-END:variables
 }
