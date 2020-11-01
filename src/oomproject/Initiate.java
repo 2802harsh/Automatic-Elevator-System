@@ -369,16 +369,19 @@ public class Initiate extends javax.swing.JFrame {
              {
                  elevatorUp.setEnabled(true);
                  elevatorDown.setEnabled(false);
+                 moving.setEnabled(true);
              }
              else if(direction == ElevatorDirection.ELEVATOR_DOWN)
              {
                  elevatorUp.setEnabled(false);
                  elevatorDown.setEnabled(true);
+                 moving.setEnabled(true);
              }
              else
              {
                  elevatorUp.setEnabled(false);
                  elevatorDown.setEnabled(false);
+                 moving.setEnabled(false);
              }
         }
     };
