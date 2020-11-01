@@ -78,7 +78,11 @@ public class Elevator extends ElevatorControl {
         this.elevatorStatus = elevatorStatus;
         return true;
     }
-
+    
+    public ElevatorDirection getElevatorDirection(){
+        return direction;
+    }
+    
     public ElevatorStatus getElevatorStatus(){
         return this.elevatorStatus;
     }

@@ -11,6 +11,7 @@ import java.util.concurrent.ScheduledFuture;
 import java.util.concurrent.TimeUnit;
 
 import backend.Elevator;
+import backend.enums.ElevatorDirection;
 
 /**
  *
@@ -61,6 +62,8 @@ public class Initiate extends javax.swing.JFrame {
         exiting = new javax.swing.JLabel();
         moving = new javax.swing.JLabel();
         generate = new javax.swing.JButton();
+        elevatorDown = new javax.swing.JLabel();
+        elevatorUp = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
@@ -173,6 +176,13 @@ public class Initiate extends javax.swing.JFrame {
             }
         });
 
+        elevatorDown.setIcon(new javax.swing.ImageIcon(getClass().getResource("/oomproject/icons/down-arrow.png"))); // NOI18N
+        elevatorDown.setEnabled(false);
+
+        elevatorUp.setForeground(new java.awt.Color(248, 248, 248));
+        elevatorUp.setIcon(new javax.swing.ImageIcon(getClass().getResource("/oomproject/icons/up-arrow.png"))); // NOI18N
+        elevatorUp.setEnabled(false);
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -199,9 +209,15 @@ public class Initiate extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(doorStatus, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(floor, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(0, 45, Short.MAX_VALUE))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(floor, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(elevatorUp, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addComponent(elevatorDown, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                        .addGap(0, 31, Short.MAX_VALUE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(exiting, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(76, 76, 76)
                         .addComponent(moving, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -227,22 +243,29 @@ public class Initiate extends javax.swing.JFrame {
                 .addGap(34, 34, 34)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(53, 53, 53)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(floorLabel)
-                            .addComponent(floor, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(peopleLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(people, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(doorLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(doorStatus, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(weightLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(weight, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addGap(90, 90, 90))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(elevatorUp)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(elevatorDown)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(53, 53, 53)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(weightLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(weight, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(8, 8, 8)))
-                .addGap(82, 82, 82)
+                            .addComponent(floorLabel)
+                            .addComponent(floor, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addGap(82, 82, 82)))
                 .addComponent(jLabel4)
                 .addGap(34, 34, 34)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -335,12 +358,28 @@ public class Initiate extends javax.swing.JFrame {
              Double elWeight = elevator.getWeight();
              String elDoor = elevator.getDoorStatus();
              String currentFloor = String.valueOf(elevator.getCurrentFloor());
+             ElevatorDirection direction = elevator.getElevatorDirection();
 
              // Set the values in GUI
              people.setText(String.valueOf(elPeople));
              weight.setText(String.valueOf(elWeight));
              doorStatus.setText(String.valueOf(elDoor));
              floor.setText(currentFloor);
+             if(direction == ElevatorDirection.ELEVATOR_UP)
+             {
+                 elevatorUp.setEnabled(true);
+                 elevatorDown.setEnabled(false);
+             }
+             else if(direction == ElevatorDirection.ELEVATOR_DOWN)
+             {
+                 elevatorUp.setEnabled(false);
+                 elevatorDown.setEnabled(true);
+             }
+             else
+             {
+                 elevatorUp.setEnabled(false);
+                 elevatorDown.setEnabled(false);
+             }
         }
     };
    
@@ -352,6 +391,8 @@ public class Initiate extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel doorLabel;
     private javax.swing.JTextField doorStatus;
+    private javax.swing.JLabel elevatorDown;
+    private javax.swing.JLabel elevatorUp;
     private javax.swing.JLabel entering;
     private javax.swing.JLabel exiting;
     private javax.swing.JTextField floor;
