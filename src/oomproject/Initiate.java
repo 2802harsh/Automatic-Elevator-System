@@ -149,6 +149,7 @@ public class Initiate extends javax.swing.JFrame {
         entering.setBackground(new java.awt.Color(184, 222, 111));
         entering.setFont(new java.awt.Font("Dubai", 1, 20)); // NOI18N
         entering.setForeground(new java.awt.Color(255, 248, 205));
+        entering.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         entering.setText("People Entering");
 
         overload.setFont(new java.awt.Font("Dubai", 1, 24)); // NOI18N
@@ -158,11 +159,13 @@ public class Initiate extends javax.swing.JFrame {
 
         exiting.setFont(new java.awt.Font("Dubai", 1, 20)); // NOI18N
         exiting.setForeground(new java.awt.Color(255, 248, 205));
+        exiting.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         exiting.setText("People Exiting");
         exiting.setEnabled(false);
 
         moving.setFont(new java.awt.Font("Dubai", 1, 20)); // NOI18N
         moving.setForeground(new java.awt.Color(255, 248, 205));
+        moving.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         moving.setText("Lift Moving");
         moving.setEnabled(false);
 
@@ -195,9 +198,11 @@ public class Initiate extends javax.swing.JFrame {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(weightLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGap(43, 43, 43))
-                    .addComponent(entering))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(entering, javax.swing.GroupLayout.PREFERRED_SIZE, 179, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(0, 0, Short.MAX_VALUE)))
                 .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(people, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -214,14 +219,12 @@ public class Initiate extends javax.swing.JFrame {
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(elevatorUp, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                    .addComponent(elevatorDown, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE))))
-                        .addGap(0, 31, Short.MAX_VALUE))
+                                    .addComponent(elevatorDown, javax.swing.GroupLayout.PREFERRED_SIZE, 31, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(exiting, javax.swing.GroupLayout.PREFERRED_SIZE, 143, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(76, 76, 76)
-                        .addComponent(moving, javax.swing.GroupLayout.PREFERRED_SIZE, 159, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(19, 19, 19))))
+                        .addComponent(exiting, javax.swing.GroupLayout.PREFERRED_SIZE, 204, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(moving, javax.swing.GroupLayout.PREFERRED_SIZE, 158, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                .addGap(0, 31, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
