@@ -5,6 +5,8 @@
  */
 package oomproject;
 
+import java.util.regex.Pattern;
+
 import backend.ElevatorControl;
 
 /**
@@ -20,6 +22,7 @@ public class Configure extends javax.swing.JFrame {
         initComponents();
         setVisible(true);
         setDefaultCloseOperation(javax.swing.JFrame.DISPOSE_ON_CLOSE);
+        validateNo.setVisible(false);
     }
 
     /**
@@ -40,8 +43,11 @@ public class Configure extends javax.swing.JFrame {
         peopleLabel = new javax.swing.JLabel();
         weight = new javax.swing.JTextField();
         update = new javax.swing.JButton();
+        validateOk = new javax.swing.JLabel();
+        validateNo = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setResizable(false);
 
         jPanel1.setBackground(new java.awt.Color(240, 123, 63));
 
@@ -50,10 +56,12 @@ public class Configure extends javax.swing.JFrame {
 
         jLabel1.setFont(new java.awt.Font("Dubai", 1, 18)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(238, 238, 238));
+        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("Set the threshold values for Number of People and Weight");
 
         jLabel2.setFont(new java.awt.Font("Dubai", 1, 48)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(238, 238, 238));
+        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel2.setText("Configure");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
@@ -61,21 +69,19 @@ public class Configure extends javax.swing.JFrame {
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addContainerGap(94, Short.MAX_VALUE)
-                .addComponent(jLabel1)
-                .addGap(75, 75, 75))
-            .addGroup(jPanel2Layout.createSequentialGroup()
-                .addGap(207, 207, 207)
-                .addComponent(jLabel2)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap()
+                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel2Layout.createSequentialGroup()
-                .addContainerGap(20, Short.MAX_VALUE)
-                .addComponent(jLabel2)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(24, 24, 24)
+                .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 58, Short.MAX_VALUE)
                 .addGap(23, 23, 23))
         );
 
@@ -94,6 +100,11 @@ public class Configure extends javax.swing.JFrame {
         weight.setBackground(new java.awt.Color(238, 238, 238));
         weight.setFont(new java.awt.Font("Dubai", 1, 18)); // NOI18N
         weight.setText("800");
+        weight.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                weightKeyReleased(evt);
+            }
+        });
 
         update.setBackground(new java.awt.Color(45, 64, 89));
         update.setFont(new java.awt.Font("Dubai", 1, 18)); // NOI18N
@@ -106,6 +117,16 @@ public class Configure extends javax.swing.JFrame {
             }
         });
 
+        validateOk.setFont(new java.awt.Font("Dubai", 1, 12)); // NOI18N
+        validateOk.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        validateOk.setIcon(new javax.swing.ImageIcon(getClass().getResource("/oomproject/icons/check.png"))); // NOI18N
+        validateOk.setText("OK");
+
+        validateNo.setFont(new java.awt.Font("Dubai", 1, 12)); // NOI18N
+        validateNo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        validateNo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/oomproject/icons/warning.png"))); // NOI18N
+        validateNo.setText("The value should be between 500 and 3000");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -113,42 +134,56 @@ public class Configure extends javax.swing.JFrame {
             .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(69, 69, 69)
-                .addComponent(weightLabel)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addComponent(weightLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 329, Short.MAX_VALUE)
+                .addGap(243, 243, 243))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(269, 269, 269)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addComponent(update)
+                        .addComponent(update, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGap(260, 260, 260))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(weight, javax.swing.GroupLayout.PREFERRED_SIZE, 63, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(people, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(82, 82, 82))))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(0, 0, Short.MAX_VALUE)
+                                .addComponent(validateNo, javax.swing.GroupLayout.PREFERRED_SIZE, 308, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGap(206, 206, 206)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(weight)
+                                    .addComponent(people, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addGap(18, 18, 18)
+                                .addComponent(validateOk)))
+                        .addGap(19, 19, 19))))
             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanel1Layout.createSequentialGroup()
                     .addGap(70, 70, 70)
-                    .addComponent(peopleLabel)
-                    .addContainerGap(216, Short.MAX_VALUE)))
+                    .addComponent(peopleLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addGap(216, 216, 216)))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 90, Short.MAX_VALUE)
-                .addComponent(people, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(91, 91, 91)
+                .addComponent(people)
                 .addGap(27, 27, 27)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(weightLabel)
-                    .addComponent(weight, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(79, 79, 79)
-                .addComponent(update)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(8, 8, 8)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(weight, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                            .addComponent(validateOk, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(weightLabel))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(validateNo)
+                .addGap(64, 64, 64)
+                .addComponent(update, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGap(64, 64, 64))
             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                    .addContainerGap(283, Short.MAX_VALUE)
-                    .addComponent(peopleLabel)
+                    .addGap(283, 283, 283)
+                    .addComponent(peopleLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addGap(250, 250, 250)))
         );
 
@@ -168,6 +203,12 @@ public class Configure extends javax.swing.JFrame {
 
     private void updateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateActionPerformed
         // TODO add your handling code here:
+        
+        if(validated == false)
+        {
+            javax.swing.JOptionPane.showMessageDialog(update, "Wrong Input! Check Validation Message");
+            return;
+        }
         String num = (String)people.getSelectedItem();
         int maxNumPeople = Integer.parseInt(num);
         ElevatorControl.setMaxPeople(maxNumPeople);
@@ -177,6 +218,40 @@ public class Configure extends javax.swing.JFrame {
         ElevatorControl.setMaxWeight(maxWeight);
     }//GEN-LAST:event_updateActionPerformed
 
+    private void weightKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_weightKeyReleased
+        // TODO add your handling code here:
+        String wtText = weight.getText();
+        
+        if(! Pattern.matches(DOUBLE_PATTERN,wtText))
+        {
+            validateNo.setText("Not a Value");
+            validateNo.setVisible(true);
+            validated = false;
+            validateOk.setVisible(false);
+        }
+        else
+        {
+            Double wt = Double.parseDouble(wtText);
+            if(wt<500 || wt>3000)
+            {
+                validateOk.setVisible(false);
+                validateNo.setText("The value should be between 500 and 3000");
+                validateNo.setVisible(true);
+                validated = false;
+            }
+            else
+            {
+                validateOk.setVisible(true);
+                validateNo.setVisible(false);
+                validated = true;
+            }
+        }
+        
+    }//GEN-LAST:event_weightKeyReleased
+    public boolean getValidated()
+    {
+        return validated;
+    }
     /**
      * @param args the command line arguments
      */
@@ -211,6 +286,9 @@ public class Configure extends javax.swing.JFrame {
             }
         });
     }
+    
+    private boolean validated = true;
+    final static String DOUBLE_PATTERN = "[-+]?[0-9]*\\.?[0-9]+([eE][-+]?[0-9]+)?";
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
@@ -220,6 +298,8 @@ public class Configure extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> people;
     private javax.swing.JLabel peopleLabel;
     private javax.swing.JButton update;
+    private javax.swing.JLabel validateNo;
+    private javax.swing.JLabel validateOk;
     private javax.swing.JTextField weight;
     private javax.swing.JLabel weightLabel;
     // End of variables declaration//GEN-END:variables

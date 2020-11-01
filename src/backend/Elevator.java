@@ -12,12 +12,17 @@ import java.util.concurrent.TimeUnit;
 import java.util.Timer;
 import java.util.TimerTask;
 
+import java.util.concurrent.Executors;
+import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.ScheduledFuture;
+import java.util.concurrent.TimeUnit;
+
 
 import backend.enums.ElevatorDirection;
 import backend.enums.ElevatorStatus;
 //import oomproject.Initiate;
         
-//import oomproject.Initiate;
+import oomproject.Initiate;
 
 /**
  *
@@ -28,6 +33,7 @@ public class Elevator extends ElevatorControl {
     protected Double weight = 0.0;
     protected int people = 0;
     protected int totalFloors = 15;
+    Initiate obj;
     
 //    private final Integer id;
     private Integer currentFloor;
@@ -41,9 +47,15 @@ public class Elevator extends ElevatorControl {
     private TreeSet<Integer> downDestinationFloors;
     private ElevatorStatus elevatorStatus;
     ElevatorDirection direction;
+    ScheduledExecutorService exec = Executors.newScheduledThreadPool(1);
     
     
     public Elevator() {
+        
+        
+//        exec.scheduleAtFixedRate(move,0,2,TimeUnit.SECONDS);
+        Timer timer = new Timer();
+        timer.schedule(new move(), 0, 1000);
 //        this.id = id;
         this.currentFloor = 0;
         this.upDestinationFloors = new TreeSet<Integer>();
@@ -111,48 +123,48 @@ public class Elevator extends ElevatorControl {
     
     
     
-//    public void floorUp()
-//    {
-//        try{
-//            TimeUnit.SECONDS.sleep(1);
-//        }catch (InterruptedException e) {
-//            System.err.format("IOException: %s%n", e);
-//        }
-//        
-//        currentFloor++;
-//    }
-//    
-//    public void floorDown()
-//    {
-//        try{
-//            TimeUnit.SECONDS.sleep(1);
-//        }catch (InterruptedException e) {
-//            System.err.format("IOException: %s%n", e);
-//        }
-//        currentFloor--;
-//    }
-    Thread floorUp = new Thread(() -> {
-//        wait();
+    public void floorUp()
+    {
         try{
-//            wait();
             TimeUnit.SECONDS.sleep(1);
         }catch (InterruptedException e) {
             System.err.format("IOException: %s%n", e);
         }
         
         currentFloor++;
-    });
-    Thread floorDown = new Thread(() -> {
-        
+    }
+    
+    public void floorDown()
+    {
         try{
-//            wait();
             TimeUnit.SECONDS.sleep(1);
         }catch (InterruptedException e) {
             System.err.format("IOException: %s%n", e);
         }
-        
         currentFloor--;
-    });
+    }
+//    Thread floorUp = new Thread(() -> {
+////        wait();
+//        try{
+////            wait();
+//            TimeUnit.SECONDS.sleep(1);
+//        }catch (InterruptedException e) {
+//            System.err.format("IOException: %s%n", e);
+//        }
+//        
+//        currentFloor++;
+//    });
+//    Thread floorDown = new Thread(() -> {
+//        
+//        try{
+////            wait();
+//            TimeUnit.SECONDS.sleep(1);
+//        }catch (InterruptedException e) {
+//            System.err.format("IOException: %s%n", e);
+//        }
+//        
+//        currentFloor--;
+//    });
     
 //    Timer timer = new Timer();
     public boolean moveAndCheckIfServed() {
@@ -162,28 +174,14 @@ public class Elevator extends ElevatorControl {
             if(upDestinationFloors.first() == currentFloor){
                 return popUpDestionation();
             }else {
-                
-//                timer.schedule(new floorUp(), 1000);
-                    try {
-                        Thread.sleep(1000);                 //1000 milliseconds is one second.
-                        currentFloor++;
-                    } catch(InterruptedException ex) {
-                        Thread.currentThread().interrupt();
-                    }
-//                floorUp.start();
+             
+                floorUp();
             }
         }else if(direction == ElevatorDirection.ELEVATOR_DOWN){
             if(downDestinationFloors.first() == currentFloor){
                 return popDownDestionation();
             }else {
-                try {
-                        Thread.sleep(1000);                 //1000 milliseconds is one second.
-                        currentFloor--;
-                    } catch(InterruptedException ex) {
-                        Thread.currentThread().interrupt();
-                    }
-//                timer.schedule(new floorDown(), 1000);
-//                floorDown.start();
+                floorDown();
             }
         }else{
             //Do Nothing. Elevator is not moving.
@@ -248,20 +246,42 @@ public class Elevator extends ElevatorControl {
     {
         Random rand = new Random();
         Integer newFloor = rand.nextInt(totalFloors);
-//        System.out.println("New Floor:" + newFloor);
+        System.out.println("New Floor:" + newFloor);
 //        Integer newFloor;
         addNewDestination(newFloor);
-        moveAndCheckIfServed();
-//        System.out.println(getCurrentFloor());
-        int cnt = 0;
-        while(getNextDestionationFloor()!=-1)
-        {
-            cnt ++;
-//            if(cnt == 8)
+//        moveAndCheckIfServed();
+////        System.out.println(getCurrentFloor());
+//        int cnt = 0;
+//        while(getNextDestionationFloor()!=-1)
+//        {
+//            cnt ++;
+////            if(cnt == 8)
+////            {
+////                System.out.println("cnt: "+cnt);
+////                addNewDestination(5);
+////            }
+//            System.out.println(getCurrentFloor());
+//            boolean whathapnd = moveAndCheckIfServed();
+//            if(whathapnd)
 //            {
-//                System.out.println("cnt: "+cnt);
-//                addNewDestination(5);
+//                direction();
 //            }
+//        }
+        
+    }
+    
+//    ScheduledExecutorService exec = Executors.newSingleThreadScheduledExecutor();
+//    exec.scheduleAtFixedRate(new Runnable() {
+//        @Override
+//        public void run() {
+//          // do stuff
+//        }
+//      }, 0, 5, TimeUnit.SECONDS);
+      
+      class move extends TimerTask{
+        @Override
+        public void run() {
+            moveAndCheckIfServed();
 //            System.out.println(getCurrentFloor());
             boolean whathapnd = moveAndCheckIfServed();
             if(whathapnd)
@@ -269,18 +289,17 @@ public class Elevator extends ElevatorControl {
                 direction();
             }
         }
-        
-    }
+    };
     
-//    public static void main(String args[])
-//    {
-//        Elevator e = new Elevator();
+    public static void main(String args[])
+    {
+        Elevator e = new Elevator();
+        System.out.println(e.getCurrentFloor());
+        e.getNewFloor();
 //        System.out.println(e.getCurrentFloor());
-//        e.getNewFloor();
-////        System.out.println(e.getCurrentFloor());
-////        e.getNewFloor();
-////        System.out.println(e.getCurrentFloor());
-////        e.getNewFloor();
-////        System.out.println(e.getCurrentFloor());
-//    }
+        e.getNewFloor();
+//        System.out.println(e.getCurrentFloor());
+        e.getNewFloor();
+//        System.out.println(e.getCurrentFloor());
+    }
 }
