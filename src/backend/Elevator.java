@@ -33,7 +33,7 @@ public class Elevator extends ElevatorControl {
     protected Double weight = 0.0;
     protected int people = 0;
     protected int totalFloors = 15;
-    Initiate obj;
+//    Initiate obj;
     
 //    private final Integer id;
     private Integer currentFloor;
@@ -41,9 +41,6 @@ public class Elevator extends ElevatorControl {
     Sorted in Asc for up movement
      */
     private TreeSet<Integer> upDestinationFloors;
-    /*
-    Sorted in Desc for down movement
-     */
     private TreeSet<Integer> downDestinationFloors;
     private ElevatorStatus elevatorStatus;
     ElevatorDirection direction;
@@ -64,20 +61,20 @@ public class Elevator extends ElevatorControl {
                 return o2.compareTo(o1);
             }
         });
-        this.elevatorStatus = ElevatorStatus.ELEVATOR_FUNCTIONAL;
+//        this.elevatorStatus = ElevatorStatus.ELEVATOR_FUNCTIONAL;
         direction = ElevatorDirection.ELEVATOR_NONE;
     }
     
-    public boolean updateStatus(ElevatorStatus elevatorStatus){
-        /*
-        Cannot update status for an elevator which is actively serving requests
-         */
-        if(getTotalRequests() > 0){
-            return false;
-        }
-        this.elevatorStatus = elevatorStatus;
-        return true;
-    }
+//    public boolean updateStatus(ElevatorStatus elevatorStatus){
+//        /*
+//        Cannot update status for an elevator which is actively serving requests
+//         */
+//        if(getTotalRequests() > 0){
+//            return false;
+//        }
+//        this.elevatorStatus = elevatorStatus;
+//        return true;
+//    }
     
     public ElevatorDirection getElevatorDirection(){
         return direction;
@@ -129,56 +126,32 @@ public class Elevator extends ElevatorControl {
     
     public void floorUp()
     {
-        try{
-            TimeUnit.SECONDS.sleep(1);
-        }catch (InterruptedException e) {
-            System.err.format("IOException: %s%n", e);
-        }
+//        try{
+//            TimeUnit.SECONDS.sleep(1);
+//        }catch (InterruptedException e) {
+//            System.err.format("IOException: %s%n", e);
+//        }
         
         currentFloor++;
     }
     
     public void floorDown()
     {
-        try{
-            TimeUnit.SECONDS.sleep(1);
-        }catch (InterruptedException e) {
-            System.err.format("IOException: %s%n", e);
-        }
+//        try{
+//            TimeUnit.SECONDS.sleep(1);
+//        }catch (InterruptedException e) {
+//            System.err.format("IOException: %s%n", e);
+//        }
         currentFloor--;
     }
-//    Thread floorUp = new Thread(() -> {
-////        wait();
-//        try{
-////            wait();
-//            TimeUnit.SECONDS.sleep(1);
-//        }catch (InterruptedException e) {
-//            System.err.format("IOException: %s%n", e);
-//        }
-//        
-//        currentFloor++;
-//    });
-//    Thread floorDown = new Thread(() -> {
-//        
-//        try{
-////            wait();
-//            TimeUnit.SECONDS.sleep(1);
-//        }catch (InterruptedException e) {
-//            System.err.format("IOException: %s%n", e);
-//        }
-//        
-//        currentFloor--;
-//    });
-    
-//    Timer timer = new Timer();
+
     public boolean moveAndCheckIfServed() {
         direction();
         
         if(direction == ElevatorDirection.ELEVATOR_UP){
             if(upDestinationFloors.first() == currentFloor){
                 return popUpDestionation();
-            }else {
-             
+            }else {             
                 floorUp();
             }
         }else if(direction == ElevatorDirection.ELEVATOR_DOWN){
@@ -229,9 +202,9 @@ public class Elevator extends ElevatorControl {
         return true;
     }
 
-    public int getTotalRequests(){
-        return upDestinationFloors.size() + downDestinationFloors.size();
-    }
+//    public int getTotalRequests(){
+//        return upDestinationFloors.size() + downDestinationFloors.size();
+//    }
     
     public int getPeople()
     {
@@ -285,7 +258,7 @@ public class Elevator extends ElevatorControl {
       class move extends TimerTask{
         @Override
         public void run() {
-            moveAndCheckIfServed();
+//            moveAndCheckIfServed();
 //            System.out.println(getCurrentFloor());
             boolean whathapnd = moveAndCheckIfServed();
             if(whathapnd)

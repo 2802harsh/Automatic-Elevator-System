@@ -64,6 +64,7 @@ public class Initiate extends javax.swing.JFrame {
         generate = new javax.swing.JButton();
         elevatorDown = new javax.swing.JLabel();
         elevatorUp = new javax.swing.JLabel();
+        generate2 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -185,6 +186,16 @@ public class Initiate extends javax.swing.JFrame {
         elevatorUp.setIcon(new javax.swing.ImageIcon(getClass().getResource("/oomproject/icons/up-arrow.png"))); // NOI18N
         elevatorUp.setEnabled(false);
 
+        generate2.setBackground(new java.awt.Color(45, 64, 89));
+        generate2.setFont(new java.awt.Font("Dubai", 1, 18)); // NOI18N
+        generate2.setForeground(new java.awt.Color(238, 238, 238));
+        generate2.setText("Generate");
+        generate2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                generate2ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -236,7 +247,9 @@ public class Initiate extends javax.swing.JFrame {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(68, 68, 68)
                 .addComponent(generate)
-                .addGap(0, 0, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(generate2)
+                .addGap(195, 195, 195))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -277,7 +290,9 @@ public class Initiate extends javax.swing.JFrame {
                 .addGap(18, 18, 18)
                 .addComponent(overload)
                 .addGap(42, 42, 42)
-                .addComponent(generate)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(generate)
+                    .addComponent(generate2))
                 .addGap(41, 41, 41))
         );
 
@@ -297,8 +312,15 @@ public class Initiate extends javax.swing.JFrame {
 
     private void generateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_generateActionPerformed
         // TODO add your handling code here:
-        elevator.getNewFloor();
+//        elevator.getNewFloor();
+        elevator.addNewDestination(1);
     }//GEN-LAST:event_generateActionPerformed
+
+    private void generate2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_generate2ActionPerformed
+        // TODO add your handling code here:
+//        elevator.getNewFloor(0);
+        elevator.addNewDestination(0);
+    }//GEN-LAST:event_generate2ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -403,6 +425,7 @@ public class Initiate extends javax.swing.JFrame {
     private javax.swing.JTextField floor;
     private javax.swing.JLabel floorLabel;
     private javax.swing.JButton generate;
+    private javax.swing.JButton generate2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel4;
