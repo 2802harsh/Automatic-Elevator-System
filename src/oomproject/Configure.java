@@ -216,6 +216,8 @@ public class Configure extends javax.swing.JFrame {
         String wt = (String)weight.getText();
         Double maxWeight = Double.parseDouble(wt);
         ElevatorControl.setMaxWeight(maxWeight);
+        
+        javax.swing.JOptionPane.showMessageDialog(update, "Values Updated");
     }//GEN-LAST:event_updateActionPerformed
 
     private void weightKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_weightKeyReleased
