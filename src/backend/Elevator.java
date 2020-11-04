@@ -5,34 +5,31 @@
  */
 package backend;
 
-import java.util.Random;
-import java.util.Comparator;
-import java.util.TreeSet;
-import java.util.concurrent.TimeUnit;
-import java.util.Timer;
-import java.util.TimerTask;
+import java.util.*;
 
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
-import java.util.concurrent.ScheduledFuture;
-import java.util.concurrent.TimeUnit;
 
 
 import backend.enums.ElevatorDirection;
 import backend.enums.ElevatorStatus;
 //import oomproject.Initiate;
         
-import oomproject.Initiate;
 
 /**
  *
  * @author HP
  */
 public class Elevator extends ElevatorControl {
+    
+        Timer timer = new Timer();
+        
     protected String doorStatus = "Open";
     protected Double weight = 0.0;
     protected int people = 0;
     protected int totalFloors = 15;
+    
+    protected boolean changeIncoming = false;
 //    Initiate obj;
     
 //    private final Integer id;
@@ -42,21 +39,23 @@ public class Elevator extends ElevatorControl {
      */
     private TreeSet<Integer> upDestinationFloors;
     private TreeSet<Integer> downDestinationFloors;
+    
+    protected static List<Double> weights = new ArrayList<Double>();
+    
     private ElevatorStatus elevatorStatus;
     ElevatorDirection direction;
-    ScheduledExecutorService exec = Executors.newScheduledThreadPool(1);
     
     
     public Elevator() {
         
         
 //        exec.scheduleAtFixedRate(move,0,2,TimeUnit.SECONDS);
-        Timer timer = new Timer();
-        timer.schedule(new move(), 0, 1000);
+        timer.schedule(move, 0, 1000);
 //        this.id = id;
         this.currentFloor = 0;
-        this.upDestinationFloors = new TreeSet<Integer>();
-        this.downDestinationFloors = new TreeSet<Integer>(new Comparator<Integer>() {
+        this.upDestinationFloors = new TreeSet<>();
+        this.downDestinationFloors = new TreeSet<>(new Comparator<Integer>() {
+            @Override
             public int compare(Integer o1, Integer o2) {
                 return o2.compareTo(o1);
             }
@@ -83,6 +82,21 @@ public class Elevator extends ElevatorControl {
     public ElevatorStatus getElevatorStatus(){
         return this.elevatorStatus;
     }
+    
+    public int getTotalFloors()
+    {
+        return totalFloors;
+    }
+    
+    public void setWeight(Double weight)
+    {
+        this.weight = weight;
+    }
+    
+    public void setPeople(int enter, int exit)
+    {
+        people = people+enter-exit;
+    }
 
 //    public int getId(){
 //        return this.id;
@@ -100,6 +114,13 @@ public class Elevator extends ElevatorControl {
 
     public int getCurrentFloor(){
         return currentFloor;
+    }
+    
+    public void setChangeIncoming(boolean change){
+        changeIncoming = change;
+    }
+    public boolean getChangeIncoming(){
+        return changeIncoming;
     }
 
     public void addNewDestination(Integer destination) {
@@ -246,7 +267,33 @@ public class Elevator extends ElevatorControl {
 //        }
         
     }
-    
+    public void PowerCut()
+    {
+        upDestinationFloors.clear();
+        downDestinationFloors.clear();
+        if(direction == ElevatorDirection.ELEVATOR_UP)
+        {
+            if(currentFloor!=totalFloors-1)
+            {
+                addNewDestination(currentFloor+1);
+            }
+            else
+            {
+                addNewDestination(currentFloor-1);
+            }
+        }
+        else if(direction == ElevatorDirection.ELEVATOR_DOWN)
+        {
+            if(currentFloor!=0)
+            {
+                addNewDestination(currentFloor-1);
+            }
+            else
+            {
+                addNewDestination(currentFloor+1);
+            }
+        }
+    }
 //    ScheduledExecutorService exec = Executors.newSingleThreadScheduledExecutor();
 //    exec.scheduleAtFixedRate(new Runnable() {
 //        @Override
@@ -255,18 +302,32 @@ public class Elevator extends ElevatorControl {
 //        }
 //      }, 0, 5, TimeUnit.SECONDS);
       
-      class move extends TimerTask{
+      TimerTask move = new TimerTask(){
         @Override
         public void run() {
 //            moveAndCheckIfServed();
 //            System.out.println(getCurrentFloor());
-            boolean whathapnd = moveAndCheckIfServed();
-            if(whathapnd)
-            {
-                direction();
+            if (! changeIncoming) {
+                boolean whathapnd = moveAndCheckIfServed();
+                if(whathapnd)
+                {
+                    direction();
+                    changeIncoming = true;
+//                    EnterPerson enterPerson = new EnterPerson(Elevator.this);
+//                    Initiate.inputPersons.setVisible(true);
+                }
             }
+            
         }
     };
+      
+    @Override
+      public void finalize()
+      {
+          move.cancel();
+          timer.cancel();
+//          Timer.stop();
+      }
     
     public static void main(String args[])
     {
