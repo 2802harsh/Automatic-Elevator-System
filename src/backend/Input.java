@@ -29,6 +29,7 @@ public class Input {
         this.totalFloors = totalFloors;
         
         newRandomInput();
+        System.out.println(floors);
     }
     
     public void newRandomInput()

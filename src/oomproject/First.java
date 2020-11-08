@@ -86,6 +86,11 @@ public class First extends javax.swing.JFrame {
         initiate.setIcon(new javax.swing.ImageIcon(getClass().getResource("/oomproject/icons/report.png"))); // NOI18N
         initiate.setText("    Log Report");
         initiate.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        initiate.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                initiateMouseClicked(evt);
+            }
+        });
 
         log.setFont(new java.awt.Font("Dubai", 1, 18)); // NOI18N
         log.setIcon(new javax.swing.ImageIcon(getClass().getResource("/oomproject/icons/elevator.png"))); // NOI18N
@@ -146,6 +151,11 @@ public class First extends javax.swing.JFrame {
         // TODO add your handling code here:
         new Initiate();
     }//GEN-LAST:event_logMouseClicked
+
+    private void initiateMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_initiateMouseClicked
+        // TODO add your handling code here:
+        new LogReport();
+    }//GEN-LAST:event_initiateMouseClicked
 
     /**
      * @param args the command line arguments

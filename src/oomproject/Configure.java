@@ -202,6 +202,7 @@ public class Configure extends javax.swing.JFrame {
         String wt = (String)weight.getText();
         Double maxWeight = Double.parseDouble(wt);
         ElevatorControl.setMaxWeight(maxWeight);
+        javax.swing.JOptionPane.showMessageDialog(update, "Updated !");
     }//GEN-LAST:event_updateActionPerformed
 
     private void weightKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_weightKeyReleased
@@ -218,10 +219,10 @@ public class Configure extends javax.swing.JFrame {
         else
         {
             Double wt = Double.parseDouble(wtText);
-            if(wt<500 || wt>3000)
+            if(wt<500 || wt>10000)
             {
                 validateOk.setVisible(false);
-                validateNo.setText("The value should be between 500 and 3000 ");
+                validateNo.setText("The value should be between 500 and 10000 ");
                 validateNo.setVisible(true);
                 validated = false;
             }

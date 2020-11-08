@@ -16,6 +16,7 @@ import java.text.DecimalFormat;
 import backend.Elevator;
 import backend.enums.ElevatorDirection;
 import backend.Input;
+import backend.Log;
 
 /**
  *
@@ -599,6 +600,7 @@ public class Initiate extends javax.swing.JFrame {
         {
             overload.setEnabled(false);
             overloaded = false;
+            Log log = new Log(elevator.getCurrentFloor(),ent,ext,totalWeight);
         }
     }
     
