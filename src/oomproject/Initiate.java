@@ -17,6 +17,7 @@ import backend.Elevator;
 import backend.enums.ElevatorDirection;
 import backend.Input;
 import backend.Log;
+import backend.Email;
 
 /**
  *
@@ -518,6 +519,7 @@ public class Initiate extends javax.swing.JFrame {
             elevator.setChangeIncoming(true);
             elevatorUp.setEnabled(false);
             elevatorDown.setEnabled(false);
+            Email email = new Email();
         }
         else
         {

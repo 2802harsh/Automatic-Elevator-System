@@ -28,3 +28,9 @@
 
 05-11-2020 | 17:39:38 : 	 At Floor-4 	 Enter-0 	 Exit-1 	 Weight-0.0
 
+12-11-2020 | 16:43:24 : 	 At Floor-4 	 Enter-0 	 Exit-0 	 Weight-0.0
+
+13-11-2020 | 01:55:36 : 	 At Floor-9 	 Enter-1 	 Exit-0 	 Weight-74.96
+
+13-11-2020 | 01:55:49 : 	 At Floor-6 	 Enter-0 	 Exit-1 	 Weight-0.0
+
