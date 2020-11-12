@@ -297,9 +297,9 @@
               <Font name="Dubai" size="24" style="1"/>
             </Property>
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-              <Image iconType="3" name="/oomproject/icons/email.png"/>
+              <Image iconType="3" name="/oomproject/icons/weighing-scale.png"/>
             </Property>
-            <Property name="text" type="java.lang.String" value=" Set Admin Mail ID"/>
+            <Property name="text" type="java.lang.String" value="Set Admin Mail ID"/>
           </Properties>
         </Component>
         <Component class="javax.swing.JTextField" name="mail">
