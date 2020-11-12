@@ -1,0 +1,6 @@
+05-11-2020 15:43:30 : 	 At Floor-2 	 Enter-1 	 Exit-0 	 Weight-100.0
+
+05-11-2020 15:43:50 : 	 At Floor-2 	 Enter-1 	 Exit-0 	 Weight-100.0
+
+05-11-2020 15:43:52 : 	 At Floor-2 	 Enter-1 	 Exit-0 	 Weight-100.0
+
