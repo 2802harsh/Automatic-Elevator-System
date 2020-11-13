@@ -519,11 +519,16 @@ public class Initiate extends javax.swing.JFrame {
             elevator.setChangeIncoming(true);
             elevatorUp.setEnabled(false);
             elevatorDown.setEnabled(false);
+            
+            generate.setEnabled(false);
+            
             Email email = new Email();
         }
         else
         {
             elevator.setChangeIncoming(false);
+            
+            generate.setEnabled(true);
         }
        
     }//GEN-LAST:event_powerCutActionPerformed

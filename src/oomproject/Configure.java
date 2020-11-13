@@ -134,11 +134,11 @@ public class Configure extends javax.swing.JFrame {
         validateNo.setText("The value should be between 500 and 3000 ");
 
         weightLabel1.setFont(new java.awt.Font("Dubai", 1, 24)); // NOI18N
-        weightLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/oomproject/icons/weighing-scale.png"))); // NOI18N
-        weightLabel1.setText("Set Admin Mail ID");
+        weightLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/oomproject/icons/email.png"))); // NOI18N
+        weightLabel1.setText(" Set Admin Mail ID");
 
         mail.setBackground(new java.awt.Color(238, 238, 238));
-        mail.setFont(new java.awt.Font("Dubai", 1, 18)); // NOI18N
+        mail.setFont(new java.awt.Font("Dubai", 1, 14)); // NOI18N
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
