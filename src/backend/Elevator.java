@@ -13,7 +13,6 @@ import java.util.concurrent.ScheduledExecutorService;
 
 import backend.enums.ElevatorDirection;
 import backend.enums.ElevatorStatus;
-//import oomproject.Initiate;
         
 
 /**
@@ -30,9 +29,7 @@ public class Elevator extends ElevatorControl {
     protected int totalFloors = 15;
     
     protected boolean changeIncoming = false;
-//    Initiate obj;
-    
-//    private final Integer id;
+
     private Integer currentFloor;
     /*
     Sorted in Asc for up movement
@@ -47,11 +44,8 @@ public class Elevator extends ElevatorControl {
     
     
     public Elevator() {
-        
-        
-//        exec.scheduleAtFixedRate(move,0,2,TimeUnit.SECONDS);
+    
         timer.schedule(move, 0, 1000);
-//        this.id = id;
         this.currentFloor = 0;
         this.upDestinationFloors = new TreeSet<>();
         this.downDestinationFloors = new TreeSet<>(new Comparator<Integer>() {
@@ -60,20 +54,8 @@ public class Elevator extends ElevatorControl {
                 return o2.compareTo(o1);
             }
         });
-//        this.elevatorStatus = ElevatorStatus.ELEVATOR_FUNCTIONAL;
         direction = ElevatorDirection.ELEVATOR_NONE;
     }
-    
-//    public boolean updateStatus(ElevatorStatus elevatorStatus){
-//        /*
-//        Cannot update status for an elevator which is actively serving requests
-//         */
-//        if(getTotalRequests() > 0){
-//            return false;
-//        }
-//        this.elevatorStatus = elevatorStatus;
-//        return true;
-//    }
     
     public ElevatorDirection getElevatorDirection(){
         return direction;
@@ -97,10 +79,6 @@ public class Elevator extends ElevatorControl {
     {
         people = people+enter-exit;
     }
-
-//    public int getId(){
-//        return this.id;
-//    }
 
     public int getNextDestionationFloor(){
         if(direction == ElevatorDirection.ELEVATOR_DOWN){
@@ -131,38 +109,13 @@ public class Elevator extends ElevatorControl {
         }
     }
     
-//    class floorUp extends TimerTask {
-//        public void run() {
-//            currentFloor++;
-//        }
-//    }
-//    
-//    class floorDown extends TimerTask {
-//        public void run() {
-//            currentFloor--;
-//        }
-//    }
-    
-    
-    
     public void floorUp()
     {
-//        try{
-//            TimeUnit.SECONDS.sleep(1);
-//        }catch (InterruptedException e) {
-//            System.err.format("IOException: %s%n", e);
-//        }
-        
         currentFloor++;
     }
     
     public void floorDown()
     {
-//        try{
-//            TimeUnit.SECONDS.sleep(1);
-//        }catch (InterruptedException e) {
-//            System.err.format("IOException: %s%n", e);
-//        }
         currentFloor--;
     }
 
@@ -223,10 +176,6 @@ public class Elevator extends ElevatorControl {
         return true;
     }
 
-//    public int getTotalRequests(){
-//        return upDestinationFloors.size() + downDestinationFloors.size();
-//    }
-    
     public int getPeople()
     {
         return people;
@@ -245,27 +194,7 @@ public class Elevator extends ElevatorControl {
         Random rand = new Random();
         Integer newFloor = rand.nextInt(totalFloors);
         System.out.println("New Floor:" + newFloor);
-//        Integer newFloor;
-        addNewDestination(newFloor);
-//        moveAndCheckIfServed();
-////        System.out.println(getCurrentFloor());
-//        int cnt = 0;
-//        while(getNextDestionationFloor()!=-1)
-//        {
-//            cnt ++;
-////            if(cnt == 8)
-////            {
-////                System.out.println("cnt: "+cnt);
-////                addNewDestination(5);
-////            }
-//            System.out.println(getCurrentFloor());
-//            boolean whathapnd = moveAndCheckIfServed();
-//            if(whathapnd)
-//            {
-//                direction();
-//            }
-//        }
-        
+        addNewDestination(newFloor);        
     }
     public void PowerCut()
     {
@@ -294,27 +223,16 @@ public class Elevator extends ElevatorControl {
             }
         }
     }
-//    ScheduledExecutorService exec = Executors.newSingleThreadScheduledExecutor();
-//    exec.scheduleAtFixedRate(new Runnable() {
-//        @Override
-//        public void run() {
-//          // do stuff
-//        }
-//      }, 0, 5, TimeUnit.SECONDS);
-      
       TimerTask move = new TimerTask(){
         @Override
         public void run() {
-//            moveAndCheckIfServed();
-//            System.out.println(getCurrentFloor());
+            
             if (! changeIncoming) {
                 boolean whathapnd = moveAndCheckIfServed();
                 if(whathapnd)
                 {
                     direction();
                     changeIncoming = true;
-//                    EnterPerson enterPerson = new EnterPerson(Elevator.this);
-//                    Initiate.inputPersons.setVisible(true);
                 }
             }
             
@@ -326,18 +244,5 @@ public class Elevator extends ElevatorControl {
       {
           move.cancel();
           timer.cancel();
-//          Timer.stop();
       }
-    
-    public static void main(String args[])
-    {
-        Elevator e = new Elevator();
-        System.out.println(e.getCurrentFloor());
-        e.getNewFloor();
-//        System.out.println(e.getCurrentFloor());
-        e.getNewFloor();
-//        System.out.println(e.getCurrentFloor());
-        e.getNewFloor();
-//        System.out.println(e.getCurrentFloor());
-    }
 }

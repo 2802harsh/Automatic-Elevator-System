@@ -27,10 +27,7 @@ public class Initiate extends javax.swing.JFrame {
     
     Elevator elevator = new Elevator();
     ScheduledExecutorService executor = Executors.newScheduledThreadPool(1);
-    
-//    Timer t = new Timer();
-//    t.schedule(ElevatorUpdated(), 0, 2000);
-
+ 
     /**
      * Creates new form Initiate
      */

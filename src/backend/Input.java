@@ -17,9 +17,7 @@ public class Input {
     protected int enter;
     protected int exit;
     protected int totalFloors;
-//    protected static Double weights[];
     protected static List<Double> weights = new ArrayList<Double>(); 
-//    protected List<Integer> floors = new ArrayList<Integer>();  
     Set<Integer> floors = new HashSet<>(); 
     
     public Input(int enter, int exit, int totalFloors)
@@ -60,18 +58,5 @@ public class Input {
     {
         return weights;
     }
-    
-    public static void main(String args[])
-    {
-        Input it = new Input(2,0,5);
-        Input it2 = new Input(0,1,5);
-        for(int i=0;i<1;i++)
-        {
-            System.out.println(Input.weights.get(i));
-        }
-        System.out.println(it.floors);
-        System.out.println("it 2 starts");
-        System.out.println(it2.floors);
-    }
-    
+      
 }

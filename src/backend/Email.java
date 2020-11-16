@@ -35,7 +35,6 @@ public class Email {
 
         String to=mailId;
 
-        //imported code
         Properties props = new Properties();
         props.put("mail.smtp.starttls.enable", "true");
         props.put("mail.smtp.host", host);
@@ -53,7 +52,6 @@ public class Email {
                     }
                 });
 
-        //imported code
         try {
             MimeMessage mailMessage = new MimeMessage(session);
             mailMessage.setFrom(new InternetAddress(user));

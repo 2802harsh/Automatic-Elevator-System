@@ -31,10 +31,7 @@ public class Log {
         
         try{
             file.createNewFile();
-//            writer = new FileWriter("src/Files/fileProject.txt");
             PrintWriter pw = new PrintWriter(new FileOutputStream(file,true));
-//            writer.write(report);
-//            writer.close();
             pw.append(report);
             pw.close();
         }
@@ -42,11 +39,5 @@ public class Log {
             System.out.println("An error occurred.");
         }
         
-    }
-    
-    public static void main(String args[])
-    {
-//        Log l = new Log();
-//        System.out.println(l.generateLog(2,1, 0, 100.0));
     }
 }

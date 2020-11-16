@@ -8,12 +8,20 @@ package oomproject;
 import java.io.*;
 import java.util.*;
 import java.text.*;
+import java.time.LocalDate;
+
+import java.util.concurrent.Executors;
+import java.util.concurrent.ScheduledExecutorService;
+import java.util.concurrent.TimeUnit;
 /**
  *
  * @author HP
  */
 public class LogReport extends javax.swing.JFrame {
 
+    ScheduledExecutorService executor = Executors.newScheduledThreadPool(1);
+    
+    
     /**
      * Creates new form LogReport
      */
@@ -22,14 +30,9 @@ public class LogReport extends javax.swing.JFrame {
         setVisible(true);
         setDefaultCloseOperation(javax.swing.JFrame.DISPOSE_ON_CLOSE);
         
-//        String dd = year + "-" + month + "-" + day;
-//
-//        Date date = new SimpleDateFormat("dd-mm-yyyy").parse(dd);
-//        from.setDate(date);
-//        to.setDate(date);
+        LocalDate currDate = LocalDate.now();
         
-        String report = getReport();
-        reportText.setText(report);
+        executor.scheduleAtFixedRate(getReport, 0, 1000, TimeUnit.MILLISECONDS);
     }
 
     /**
@@ -85,18 +88,8 @@ public class LogReport extends javax.swing.JFrame {
         jScrollPane1.setViewportView(reportText);
 
         from.setDateFormatString("dd-MM-yyyy");
-        from.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
-            public void propertyChange(java.beans.PropertyChangeEvent evt) {
-                fromPropertyChange(evt);
-            }
-        });
 
         to.setDateFormatString("dd-MM-yyyy");
-        to.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
-            public void propertyChange(java.beans.PropertyChangeEvent evt) {
-                toPropertyChange(evt);
-            }
-        });
 
         jLabel2.setFont(new java.awt.Font("Dubai", 1, 18)); // NOI18N
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
@@ -159,18 +152,6 @@ public class LogReport extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void fromPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_fromPropertyChange
-        // TODO add your handling code here:
-        String report = getReport();
-        reportText.setText(report);
-    }//GEN-LAST:event_fromPropertyChange
-
-    private void toPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_toPropertyChange
-        // TODO add your handling code here:
-        String report = getReport();
-        reportText.setText(report);
-    }//GEN-LAST:event_toPropertyChange
-
     /**
      * @param args the command line arguments
      */
@@ -206,32 +187,35 @@ public class LogReport extends javax.swing.JFrame {
         });
     }
     
-    public String getReport()
-    {
-        DateFormat format = new SimpleDateFormat("dd-mm-yyyy");
-        String report = "";
-        try {
-            File file = new File("src/Files/logReport.txt");
-            Scanner reader = new Scanner(file);
-            while (reader.hasNextLine()) {
-              String data = reader.nextLine();
-              if(data.length() > 1 && data!="\n")
-              {
-                if(data.substring(0,10).compareTo(format.format(from.getDate()))>=0 &&  data.substring(0,10).compareTo(format.format(to.getDate()))<=0)
-                {
-                    report+="\n"+data+"\n";
+    Runnable getReport = new Runnable() {
+        @Override
+        public void run()
+        {
+            DateFormat format = new SimpleDateFormat("dd-mm-yyyy");
+            String report = "";
+            try {
+                File file = new File("src/Files/logReport.txt");
+                Scanner reader = new Scanner(file);
+                while (reader.hasNextLine()) {
+                  String data = reader.nextLine();
+                  if(data.length() > 1 && data!="\n")
+                  {
+                    if(data.substring(0,10).compareTo(format.format(from.getDate()))>=0 &&  data.substring(0,10).compareTo(format.format(to.getDate()))<=0)
+                    {
+                        report+="\n"+data+"\n";
+                    }
+                  }
                 }
+                reader.close();
+              } catch (FileNotFoundException e) {
+                System.out.println("An error occurred.");
               }
+            catch(NullPointerException e){
+                report = "Set Valid Date";
             }
-            reader.close();
-          } catch (FileNotFoundException e) {
-            System.out.println("An error occurred.");
-          }
-        catch(NullPointerException e){
-            report = "Set Valid Date";
+            reportText.setText(report);
         }
-        return report;
-    }
+    };
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private com.toedter.calendar.JDateChooser from;
