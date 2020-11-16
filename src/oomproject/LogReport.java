@@ -7,6 +7,7 @@ package oomproject;
 
 import java.io.*;
 import java.util.*;
+import java.text.*;
 /**
  *
  * @author HP
@@ -20,6 +21,13 @@ public class LogReport extends javax.swing.JFrame {
         initComponents();
         setVisible(true);
         setDefaultCloseOperation(javax.swing.JFrame.DISPOSE_ON_CLOSE);
+        
+//        String dd = year + "-" + month + "-" + day;
+//
+//        Date date = new SimpleDateFormat("dd-mm-yyyy").parse(dd);
+//        from.setDate(date);
+//        to.setDate(date);
+        
         String report = getReport();
         reportText.setText(report);
     }
@@ -38,6 +46,10 @@ public class LogReport extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         reportText = new javax.swing.JTextArea();
+        from = new com.toedter.calendar.JDateChooser();
+        to = new com.toedter.calendar.JDateChooser();
+        jLabel2 = new javax.swing.JLabel();
+        jLabel3 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -72,6 +84,28 @@ public class LogReport extends javax.swing.JFrame {
         reportText.setRows(5);
         jScrollPane1.setViewportView(reportText);
 
+        from.setDateFormatString("dd-MM-yyyy");
+        from.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
+            public void propertyChange(java.beans.PropertyChangeEvent evt) {
+                fromPropertyChange(evt);
+            }
+        });
+
+        to.setDateFormatString("dd-MM-yyyy");
+        to.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
+            public void propertyChange(java.beans.PropertyChangeEvent evt) {
+                toPropertyChange(evt);
+            }
+        });
+
+        jLabel2.setFont(new java.awt.Font("Dubai", 1, 18)); // NOI18N
+        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
+        jLabel2.setText("From");
+
+        jLabel3.setFont(new java.awt.Font("Dubai", 1, 18)); // NOI18N
+        jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
+        jLabel3.setText("To");
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -81,13 +115,29 @@ public class LogReport extends javax.swing.JFrame {
                 .addGap(19, 19, 19)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 708, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(23, Short.MAX_VALUE))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(46, 46, 46)
+                .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
+                .addComponent(from, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(84, 84, 84)
+                .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(18, 18, 18)
+                .addComponent(to, javax.swing.GroupLayout.PREFERRED_SIZE, 139, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(116, 116, 116))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 433, Short.MAX_VALUE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addComponent(from, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(to, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jLabel3)
+                    .addComponent(jLabel2))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 46, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 369, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
 
@@ -108,6 +158,18 @@ public class LogReport extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void fromPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_fromPropertyChange
+        // TODO add your handling code here:
+        String report = getReport();
+        reportText.setText(report);
+    }//GEN-LAST:event_fromPropertyChange
+
+    private void toPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_toPropertyChange
+        // TODO add your handling code here:
+        String report = getReport();
+        reportText.setText(report);
+    }//GEN-LAST:event_toPropertyChange
 
     /**
      * @param args the command line arguments
@@ -146,29 +208,40 @@ public class LogReport extends javax.swing.JFrame {
     
     public String getReport()
     {
+        DateFormat format = new SimpleDateFormat("dd-mm-yyyy");
         String report = "";
         try {
             File file = new File("src/Files/logReport.txt");
             Scanner reader = new Scanner(file);
             while (reader.hasNextLine()) {
               String data = reader.nextLine();
-              if(data != null || data != "null")
+              if(data.length() > 1 && data!="\n")
               {
-                  report+="\n"+data;
+                if(data.substring(0,10).compareTo(format.format(from.getDate()))>=0 &&  data.substring(0,10).compareTo(format.format(to.getDate()))<=0)
+                {
+                    report+="\n"+data+"\n";
+                }
               }
             }
             reader.close();
           } catch (FileNotFoundException e) {
             System.out.println("An error occurred.");
           }
+        catch(NullPointerException e){
+            report = "Set Valid Date";
+        }
         return report;
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private com.toedter.calendar.JDateChooser from;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextArea reportText;
+    private com.toedter.calendar.JDateChooser to;
     // End of variables declaration//GEN-END:variables
 }

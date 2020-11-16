@@ -515,12 +515,11 @@ public class Initiate extends javax.swing.JFrame {
         // TODO add your handling code here:
         if(powerCut.isSelected())
         {
+            generate.setEnabled(false);
             elevator.PowerCut();
             elevator.setChangeIncoming(true);
             elevatorUp.setEnabled(false);
             elevatorDown.setEnabled(false);
-            
-            generate.setEnabled(false);
             
             Email email = new Email();
         }
