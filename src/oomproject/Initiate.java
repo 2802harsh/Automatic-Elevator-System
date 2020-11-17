@@ -78,6 +78,7 @@ public class Initiate extends javax.swing.JFrame {
         elevatorUp = new javax.swing.JLabel();
         powerCut = new javax.swing.JToggleButton();
         jButton1 = new javax.swing.JButton();
+        Emergency = new javax.swing.JLabel();
 
         inputPersons.setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         inputPersons.addWindowListener(new java.awt.event.WindowAdapter() {
@@ -313,7 +314,7 @@ public class Initiate extends javax.swing.JFrame {
         generate.setBackground(new java.awt.Color(45, 64, 89));
         generate.setFont(new java.awt.Font("Dubai", 1, 18)); // NOI18N
         generate.setForeground(new java.awt.Color(238, 238, 238));
-        generate.setText("Generate");
+        generate.setText("Generate Floor Request");
         generate.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 generateActionPerformed(evt);
@@ -340,26 +341,35 @@ public class Initiate extends javax.swing.JFrame {
         jButton1.setBackground(new java.awt.Color(45, 64, 89));
         jButton1.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
         jButton1.setForeground(new java.awt.Color(238, 238, 238));
-        jButton1.setText("Emergency");
+        jButton1.setText("Emergency Floor Request");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
             }
         });
 
+        Emergency.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        Emergency.setForeground(new java.awt.Color(255, 255, 0));
+        Emergency.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        Emergency.setText("Emergency");
+        Emergency.setEnabled(false);
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, 786, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addGap(288, 288, 288)
+                .addComponent(exiting, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(287, 287, 287))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(250, 250, 250)
+                .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(254, 254, 254))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(41, 41, 41)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(27, 27, 27)
-                        .addComponent(generate)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(peopleLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -369,10 +379,15 @@ public class Initiate extends javax.swing.JFrame {
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(entering, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addGap(42, 42, 42)))
-                        .addGap(78, 78, 78)))
+                        .addGap(78, 78, 78))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(27, 27, 27)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(generate, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(0, 0, 0)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -395,24 +410,18 @@ public class Initiate extends javax.swing.JFrame {
                                     .addComponent(doorStatus, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)))
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGap(274, 274, 274)
-                                .addComponent(moving, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                                .addComponent(moving, javax.swing.GroupLayout.DEFAULT_SIZE, 143, Short.MAX_VALUE)))
                         .addGap(31, 31, 31))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(0, 0, Short.MAX_VALUE)
                         .addComponent(powerCut)
                         .addGap(105, 105, 105))))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addGap(250, 250, 250)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addGap(38, 38, 38)
-                        .addComponent(exiting, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGap(287, 287, 287))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, 282, Short.MAX_VALUE)
-                            .addComponent(overload, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addGap(254, 254, 254))))
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(146, 146, 146)
+                .addComponent(overload, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(114, 114, 114)
+                .addComponent(Emergency, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -435,7 +444,7 @@ public class Initiate extends javax.swing.JFrame {
                                 .addComponent(elevatorUp)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(elevatorDown)))
-                        .addGap(92, 92, 92))
+                        .addGap(65, 65, 65))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(53, 53, 53)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -444,19 +453,24 @@ public class Initiate extends javax.swing.JFrame {
                         .addGap(66, 66, 66)))
                 .addComponent(jLabel4)
                 .addGap(18, 18, 18)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(entering)
-                    .addComponent(exiting)
-                    .addComponent(moving))
-                .addGap(18, 18, 18)
-                .addComponent(overload)
-                .addGap(42, 42, 42)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(entering)
+                            .addComponent(exiting)
+                            .addComponent(moving))
+                        .addGap(18, 18, 18)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(overload)
+                            .addComponent(Emergency))
+                        .addGap(18, 18, 18)
                         .addComponent(generate)
-                        .addComponent(powerCut))
-                    .addComponent(jButton1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addGap(41, 41, 41))
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(30, 30, 30))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addComponent(powerCut)
+                        .addGap(57, 57, 57))))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -491,6 +505,14 @@ public class Initiate extends javax.swing.JFrame {
             elevator.setChangeIncoming(false);
         }
         updatePeople = true;
+        if(elevator.getupDestinationSize()==0 && elevator.getdownDestinationSize()==0)
+        {
+            elevator.emergency=false;
+            elevator.tempFloors.forEach(fl -> {
+                    elevator.addNewDestination(fl);
+                 });
+            elevator.tempFloors.clear();
+        }
     }//GEN-LAST:event_inputPersonsWindowClosed
 
     private void enteringInputFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_enteringInputFocusGained
@@ -594,7 +616,7 @@ public class Initiate extends javax.swing.JFrame {
         int ent = Integer.parseInt(e1);
         String e2 = (String)exitingInput.getSelectedItem();
         int ext = Integer.parseInt(e2);
-        Input newPassengers = new Input(ent , ext , elevator.getTotalFloors());
+        Input newPassengers = new Input(ent , ext , elevator.getTotalFloors(), elevator.emergencyStatus());
                  
         Set<Integer> floors = newPassengers.getFloors();
         List<Double> weights = newPassengers.getWeights();
@@ -660,6 +682,14 @@ public class Initiate extends javax.swing.JFrame {
              weight.setText(String.valueOf(elWeight));
              doorStatus.setText(String.valueOf(elDoor));
              floor.setText(currentFloor);
+             if(elevator.emergency==true)
+             {
+                 Emergency.setEnabled(true);
+             }
+             else if(elevator.emergency==false)
+             {
+                 Emergency.setEnabled(false);
+             }
              if(direction == ElevatorDirection.ELEVATOR_UP)
              {
                  elevatorUp.setEnabled(true);
@@ -692,6 +722,8 @@ public class Initiate extends javax.swing.JFrame {
              {
                  inputPersons.setVisible(true);
                  inputPersons.setBounds(800,300,557,330);
+//                 if(elevator.getupDestinationSize()==0 && elevator.getdownDestinationSize()==0)
+//                     elevator.emergency=false;
                  if(updatePeople)
                  {
                      setValuesComboBox();
@@ -713,6 +745,7 @@ public class Initiate extends javax.swing.JFrame {
     boolean overloaded = false;
     Double maxWeight;
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JLabel Emergency;
     private javax.swing.JButton done;
     private javax.swing.JLabel doorLabel;
     private javax.swing.JTextField doorStatus;

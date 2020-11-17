@@ -29,7 +29,7 @@ public class Elevator extends ElevatorControl {
     protected int totalFloors = 15;
     
     protected boolean changeIncoming = false;
-    protected boolean emergency = false;
+    public boolean emergency = false;
 
     private Integer currentFloor;
     /*
@@ -37,7 +37,7 @@ public class Elevator extends ElevatorControl {
      */
     private TreeSet<Integer> upDestinationFloors;
     private TreeSet<Integer> downDestinationFloors;
-    private TreeSet<Integer> tempFloors;
+    public TreeSet<Integer> tempFloors;
     
     protected static List<Double> weights = new ArrayList<Double>();
     
@@ -66,6 +66,10 @@ public class Elevator extends ElevatorControl {
     
     public ElevatorStatus getElevatorStatus(){
         return this.elevatorStatus;
+    }
+    
+    public boolean emergencyStatus(){
+        return emergency;
     }
     
     public int getTotalFloors()
@@ -183,11 +187,11 @@ public class Elevator extends ElevatorControl {
         upDestinationFloors.remove(upDestinationFloors.first());
         if(emergency && upDestinationFloors.size()==0 && downDestinationFloors.size()==0)
         {
-            emergency=false;
-            tempFloors.forEach(fl -> {
-                    addNewDestination(fl);
-                 });
-            tempFloors.clear();
+//            emergency=false;
+//            tempFloors.forEach(fl -> {
+//                    addNewDestination(fl);
+//                 });
+//            tempFloors.clear();
         }
         if (upDestinationFloors.size() == 0) {
             direction = ElevatorDirection.ELEVATOR_NONE;
@@ -199,18 +203,23 @@ public class Elevator extends ElevatorControl {
         downDestinationFloors.remove(downDestinationFloors.first());
         if(emergency && upDestinationFloors.size()==0 && downDestinationFloors.size()==0)
         {
-            emergency=false;
-            tempFloors.forEach(fl -> {
-                    addNewDestination(fl);
-                 });
-            tempFloors.clear();
+//            emergency=false;
+//            tempFloors.forEach(fl -> {
+//                    addNewDestination(fl);
+//                 });
+//            tempFloors.clear();
         }
         if(downDestinationFloors.size() == 0){
             direction = ElevatorDirection.ELEVATOR_NONE;
         }
         return true;
     }
-
+    public int getupDestinationSize(){
+        return upDestinationFloors.size();
+    }
+    public int getdownDestinationSize(){
+        return downDestinationFloors.size();
+    }
     public int getPeople()
     {
         return people;
@@ -271,17 +280,7 @@ public class Elevator extends ElevatorControl {
             }
         }
     }
-    
-    public void pause() {
-          this.timer.cancel();
-    }
-
-
-    public void resume() {
-         this.timer = new Timer();
-         this.timer.schedule( move, 0, 1000 );
-    }
-    
+   
       TimerTask move = new TimerTask(){
         @Override
         public void run() {
