@@ -29,6 +29,7 @@ public class Elevator extends ElevatorControl {
     protected int totalFloors = 15;
     
     protected boolean changeIncoming = false;
+    protected boolean emergency = false;
 
     private Integer currentFloor;
     /*
@@ -36,6 +37,7 @@ public class Elevator extends ElevatorControl {
      */
     private TreeSet<Integer> upDestinationFloors;
     private TreeSet<Integer> downDestinationFloors;
+    private TreeSet<Integer> tempFloors;
     
     protected static List<Double> weights = new ArrayList<Double>();
     
@@ -48,6 +50,7 @@ public class Elevator extends ElevatorControl {
         timer.schedule(move, 0, 1000);
         this.currentFloor = 0;
         this.upDestinationFloors = new TreeSet<>();
+        this.tempFloors = new TreeSet<>();
         this.downDestinationFloors = new TreeSet<>(new Comparator<Integer>() {
             @Override
             public int compare(Integer o1, Integer o2) {
@@ -102,11 +105,27 @@ public class Elevator extends ElevatorControl {
     }
 
     public void addNewDestination(Integer destination) {
+        if(emergency==true && tempFloors.size()==0)
+        {
+            direction = ElevatorDirection.ELEVATOR_NONE;
+            upDestinationFloors.forEach(fl -> {
+                     tempFloors.add(fl);
+                 });
+            downDestinationFloors.forEach(fl -> {
+                     tempFloors.add(fl);
+                 });
+            upDestinationFloors.clear();
+            downDestinationFloors.clear();
+        }
         if(destination > currentFloor){
             upDestinationFloors.add(destination);
         }else{
             downDestinationFloors.add(destination);
         }
+    }
+    
+    public void addTempFloor(Integer temp){
+        tempFloors.add(temp);
     }
     
     public void floorUp()
@@ -162,6 +181,14 @@ public class Elevator extends ElevatorControl {
 
     private boolean popUpDestionation() {
         upDestinationFloors.remove(upDestinationFloors.first());
+        if(emergency && upDestinationFloors.size()==0 && downDestinationFloors.size()==0)
+        {
+            emergency=false;
+            tempFloors.forEach(fl -> {
+                    addNewDestination(fl);
+                 });
+            tempFloors.clear();
+        }
         if (upDestinationFloors.size() == 0) {
             direction = ElevatorDirection.ELEVATOR_NONE;
         }
@@ -170,6 +197,14 @@ public class Elevator extends ElevatorControl {
 
     private boolean popDownDestionation() {
         downDestinationFloors.remove(downDestinationFloors.first());
+        if(emergency && upDestinationFloors.size()==0 && downDestinationFloors.size()==0)
+        {
+            emergency=false;
+            tempFloors.forEach(fl -> {
+                    addNewDestination(fl);
+                 });
+            tempFloors.clear();
+        }
         if(downDestinationFloors.size() == 0){
             direction = ElevatorDirection.ELEVATOR_NONE;
         }
@@ -194,8 +229,21 @@ public class Elevator extends ElevatorControl {
         Random rand = new Random();
         Integer newFloor = rand.nextInt(totalFloors);
         System.out.println("New Floor:" + newFloor);
+        if(emergency==true)
+            addTempFloor(newFloor);
+        else if(emergency==false)
+            addNewDestination(newFloor);        
+    }
+    
+    public void getNewEmergencyFloor()
+    {
+        emergency=true;
+        Random rand = new Random();
+        Integer newFloor = rand.nextInt(totalFloors);
+        System.out.println("New emergency Floor:" + newFloor);
         addNewDestination(newFloor);        
     }
+    
     public void PowerCut()
     {
         upDestinationFloors.clear();
@@ -223,6 +271,17 @@ public class Elevator extends ElevatorControl {
             }
         }
     }
+    
+    public void pause() {
+          this.timer.cancel();
+    }
+
+
+    public void resume() {
+         this.timer = new Timer();
+         this.timer.schedule( move, 0, 1000 );
+    }
+    
       TimerTask move = new TimerTask(){
         @Override
         public void run() {
