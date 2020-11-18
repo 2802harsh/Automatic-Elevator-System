@@ -13,7 +13,7 @@ import javax.activation.*;
  *
  * @author HP
  */
-public class Email {
+public class Email extends Thread {
     protected String mailId;
     protected String subject;
     protected String message;
@@ -24,9 +24,14 @@ public class Email {
         message = "Power Backup required for Elevator in CC3";
         subject = "URGENT : Power Backup";
         System.out.println("Sending mail ...");
-        sendMail();
+//        run();
     }
     
+    @Override
+    public void run()
+    {
+        sendMail();
+    }
     public void sendMail()
     {        
         String host="smtp.gmail.com";
