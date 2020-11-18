@@ -28,6 +28,8 @@ public class Elevator extends ElevatorControl {
     protected int people = 0;
     protected int totalFloors = 15;
     
+    protected static List<String> emergencyIds = new ArrayList<String>();
+    
     protected boolean changeIncoming = false;
     public boolean emergency = false;
 
@@ -294,6 +296,21 @@ public class Elevator extends ElevatorControl {
                 addNewDestination(currentFloor+1);
             }
         }
+    }
+    
+    public static void addEmergencyId(String id){
+        emergencyIds.add(id);
+        System.out.println(emergencyIds);
+    }
+    
+    public static void removeEmergencyId(int index){
+        emergencyIds.remove(index);
+        System.out.println(emergencyIds);
+    }
+    
+    public static List getEmergencyIds()
+    {
+        return emergencyIds;
     }
    
       TimerTask move = new TimerTask(){
