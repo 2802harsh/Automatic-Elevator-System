@@ -308,7 +308,7 @@ public class Elevator extends ElevatorControl {
         System.out.println(emergencyIds);
     }
     
-    public static List getEmergencyIds()
+    public static List<String> getEmergencyIds()
     {
         return emergencyIds;
     }

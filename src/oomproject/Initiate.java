@@ -38,6 +38,8 @@ public class Initiate extends javax.swing.JFrame {
         executor.scheduleAtFixedRate(ElevatorUpdated, 0, 500, TimeUnit.MILLISECONDS);
         setVisible(true);
         setDefaultCloseOperation(javax.swing.JFrame.DISPOSE_ON_CLOSE);
+        
+        validateEmId.setVisible(false);
     }
 
     /**
@@ -57,6 +59,12 @@ public class Initiate extends javax.swing.JFrame {
         exitingInput = new javax.swing.JComboBox<>();
         done = new javax.swing.JButton();
         enteringInput = new javax.swing.JComboBox<>();
+        enterEmId = new javax.swing.JDialog();
+        jPanel4 = new javax.swing.JPanel();
+        jLabel7 = new javax.swing.JLabel();
+        emIdInput = new javax.swing.JTextField();
+        validateEmId = new javax.swing.JLabel();
+        jButton1 = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
@@ -200,6 +208,74 @@ public class Initiate extends javax.swing.JFrame {
                     .addGap(0, 0, Short.MAX_VALUE)))
         );
 
+        jPanel4.setBackground(new java.awt.Color(45, 64, 89));
+
+        jLabel7.setFont(new java.awt.Font("Dubai", 1, 18)); // NOI18N
+        jLabel7.setForeground(new java.awt.Color(238, 238, 238));
+        jLabel7.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel7.setText("Validate Emergency, Enter your ID:");
+
+        validateEmId.setFont(new java.awt.Font("Dubai", 1, 14)); // NOI18N
+        validateEmId.setForeground(new java.awt.Color(238, 238, 238));
+        validateEmId.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        validateEmId.setIcon(new javax.swing.ImageIcon(getClass().getResource("/oomproject/icons/warning.png"))); // NOI18N
+        validateEmId.setText("Not Valid !");
+
+        jButton1.setBackground(new java.awt.Color(238, 238, 238));
+        jButton1.setFont(new java.awt.Font("Dubai", 1, 14)); // NOI18N
+        jButton1.setText("OK");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
+        jPanel4.setLayout(jPanel4Layout);
+        jPanel4Layout.setHorizontalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel4Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel4Layout.createSequentialGroup()
+                        .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(validateEmId, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addContainerGap())
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
+                        .addGap(0, 91, Short.MAX_VALUE)
+                        .addComponent(emIdInput, javax.swing.GroupLayout.PREFERRED_SIZE, 197, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(93, 93, 93))))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 73, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(158, 158, 158))
+        );
+        jPanel4Layout.setVerticalGroup(
+            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(jPanel4Layout.createSequentialGroup()
+                .addGap(24, 24, 24)
+                .addComponent(jLabel7)
+                .addGap(30, 30, 30)
+                .addComponent(emIdInput, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(37, 37, 37)
+                .addComponent(validateEmId)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 26, Short.MAX_VALUE)
+                .addComponent(jButton1)
+                .addGap(27, 27, 27))
+        );
+
+        javax.swing.GroupLayout enterEmIdLayout = new javax.swing.GroupLayout(enterEmId.getContentPane());
+        enterEmId.getContentPane().setLayout(enterEmIdLayout);
+        enterEmIdLayout.setHorizontalGroup(
+            enterEmIdLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+        enterEmIdLayout.setVerticalGroup(
+            enterEmIdLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jPanel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+        );
+
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setMinimumSize(new java.awt.Dimension(694, 704));
         addWindowListener(new java.awt.event.WindowAdapter() {
@@ -239,7 +315,7 @@ public class Initiate extends javax.swing.JFrame {
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(27, 27, 27)
-                .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 75, Short.MAX_VALUE)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 75, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, 38, Short.MAX_VALUE)
                 .addGap(43, 43, 43))
@@ -366,7 +442,7 @@ public class Initiate extends javax.swing.JFrame {
                 .addGap(287, 287, 287))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(250, 250, 250)
-                .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel4, javax.swing.GroupLayout.DEFAULT_SIZE, 290, Short.MAX_VALUE)
                 .addGap(254, 254, 254))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(41, 41, 41)
@@ -567,8 +643,39 @@ public class Initiate extends javax.swing.JFrame {
 
     private void generateEmergencyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_generateEmergencyActionPerformed
         // TODO add your handling code here:
-        elevator.getNewEmergencyFloor();
+        enterEmId.setVisible(true);
+        enterEmId.setBounds(800,300,391,261);
+//        if(validEmId)
+//        {
+//            elevator.getNewEmergencyFloor();
+//        }
     }//GEN-LAST:event_generateEmergencyActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        String id = emIdInput.getText();
+        validEmId = false;
+        List<String> ids = Elevator.getEmergencyIds();
+        for(int i=0;i<ids.size();i++)
+        {
+            if(id.compareTo(ids.get(i)) == 0)
+            {
+                validEmId = true;
+                break;
+            }
+        }
+        if(validEmId)
+        {
+            validateEmId.setVisible(false);
+            elevator.getNewEmergencyFloor();
+            emIdInput.setText("");
+            enterEmId.dispose();
+        }
+        else
+        {
+            validateEmId.setVisible(true);
+        }
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -742,6 +849,8 @@ public class Initiate extends javax.swing.JFrame {
     boolean updatePeople = true;
     boolean overloaded = false;
     Double maxWeight;
+    
+    boolean validEmId = false;
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel Emergency;
     private javax.swing.JButton done;
@@ -749,6 +858,8 @@ public class Initiate extends javax.swing.JFrame {
     private javax.swing.JTextField doorStatus;
     private javax.swing.JLabel elevatorDown;
     private javax.swing.JLabel elevatorUp;
+    private javax.swing.JTextField emIdInput;
+    private javax.swing.JDialog enterEmId;
     private javax.swing.JLabel entering;
     private javax.swing.JComboBox<String> enteringInput;
     private javax.swing.JLabel exiting;
@@ -758,20 +869,24 @@ public class Initiate extends javax.swing.JFrame {
     private javax.swing.JButton generate;
     private javax.swing.JButton generateEmergency;
     private javax.swing.JDialog inputPersons;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel jLabel7;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
+    private javax.swing.JPanel jPanel4;
     private javax.swing.JLabel moving;
     private javax.swing.JLabel overload;
     private javax.swing.JTextField people;
     private javax.swing.JLabel peopleLabel;
     private javax.swing.JToggleButton powerCut;
+    private javax.swing.JLabel validateEmId;
     private javax.swing.JTextField weight;
     private javax.swing.JLabel weightLabel;
     // End of variables declaration//GEN-END:variables
