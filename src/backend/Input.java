@@ -19,13 +19,14 @@ public class Input {
     protected int totalFloors;
     protected static List<Double> weights = new ArrayList<Double>(); 
     Set<Integer> floors = new HashSet<>(); 
+    protected boolean emergency=false;
     
-    public Input(int enter, int exit, int totalFloors)
+    public Input(int enter, int exit, int totalFloors, boolean emergency)
     {
         this.enter = enter;
         this.exit = exit;
         this.totalFloors = totalFloors;
-        
+        this.emergency=emergency;
         newRandomInput();
         System.out.println(floors);
     }
@@ -43,10 +44,21 @@ public class Input {
             Double newWeight = 50 + 80*rand.nextDouble();
             newWeight = newWeight.parseDouble(df.format(newWeight));
             weights.add(newWeight);
-            
+        }
+        if(emergency==true && enter>0){
+            System.out.println("Emergency");
             Integer floor = rand.nextInt(totalFloors);
             floors.add(floor);
         }
+        else if(emergency==false && enter >0){
+            for(int i=0;i<enter;i++)
+            {
+                System.out.println("non Emergency");
+                Integer floor = rand.nextInt(totalFloors);
+                floors.add(floor);
+            }
+        }
+        
     }
     
     public Set<Integer> getFloors()
