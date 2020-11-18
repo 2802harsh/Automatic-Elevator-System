@@ -77,7 +77,7 @@ public class Initiate extends javax.swing.JFrame {
         elevatorDown = new javax.swing.JLabel();
         elevatorUp = new javax.swing.JLabel();
         powerCut = new javax.swing.JToggleButton();
-        jButton1 = new javax.swing.JButton();
+        generateEmergency = new javax.swing.JButton();
         Emergency = new javax.swing.JLabel();
 
         inputPersons.setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
@@ -238,9 +238,9 @@ public class Initiate extends javax.swing.JFrame {
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(27, 27, 27)
-                .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 75, Short.MAX_VALUE)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 75, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, 38, Short.MAX_VALUE)
+                .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, 39, Short.MAX_VALUE)
                 .addGap(43, 43, 43))
         );
 
@@ -294,7 +294,7 @@ public class Initiate extends javax.swing.JFrame {
         entering.setEnabled(false);
 
         overload.setFont(new java.awt.Font("Dubai", 1, 24)); // NOI18N
-        overload.setForeground(new java.awt.Color(39, 33, 33));
+        overload.setForeground(new java.awt.Color(255, 255, 0));
         overload.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         overload.setText("Overload");
         overload.setEnabled(false);
@@ -338,17 +338,17 @@ public class Initiate extends javax.swing.JFrame {
             }
         });
 
-        jButton1.setBackground(new java.awt.Color(45, 64, 89));
-        jButton1.setFont(new java.awt.Font("Dialog", 1, 18)); // NOI18N
-        jButton1.setForeground(new java.awt.Color(238, 238, 238));
-        jButton1.setText("Emergency Floor Request");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        generateEmergency.setBackground(new java.awt.Color(45, 64, 89));
+        generateEmergency.setFont(new java.awt.Font("Dubai", 1, 18)); // NOI18N
+        generateEmergency.setForeground(new java.awt.Color(238, 238, 238));
+        generateEmergency.setText("Emergency Floor Request");
+        generateEmergency.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                generateEmergencyActionPerformed(evt);
             }
         });
 
-        Emergency.setFont(new java.awt.Font("Tahoma", 1, 24)); // NOI18N
+        Emergency.setFont(new java.awt.Font("Dubai", 1, 24)); // NOI18N
         Emergency.setForeground(new java.awt.Color(255, 255, 0));
         Emergency.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         Emergency.setText("Emergency");
@@ -358,7 +358,7 @@ public class Initiate extends javax.swing.JFrame {
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, 786, Short.MAX_VALUE)
+            .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, 794, Short.MAX_VALUE)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addGap(288, 288, 288)
                 .addComponent(exiting, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -372,7 +372,7 @@ public class Initiate extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(peopleLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(peopleLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 216, Short.MAX_VALUE)
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(weightLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addGap(43, 43, 43))
@@ -384,9 +384,9 @@ public class Initiate extends javax.swing.JFrame {
                         .addGap(27, 27, 27)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(generate, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                            .addComponent(generateEmergency, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
@@ -410,12 +410,11 @@ public class Initiate extends javax.swing.JFrame {
                                     .addComponent(doorStatus, javax.swing.GroupLayout.PREFERRED_SIZE, 94, javax.swing.GroupLayout.PREFERRED_SIZE)))
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGap(274, 274, 274)
-                                .addComponent(moving, javax.swing.GroupLayout.DEFAULT_SIZE, 143, Short.MAX_VALUE)))
+                                .addComponent(moving, javax.swing.GroupLayout.DEFAULT_SIZE, 154, Short.MAX_VALUE)))
                         .addGap(31, 31, 31))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addComponent(powerCut)
-                        .addGap(105, 105, 105))))
+                        .addGap(128, 128, 128))))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(146, 146, 146)
                 .addComponent(overload, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -465,19 +464,21 @@ public class Initiate extends javax.swing.JFrame {
                             .addComponent(Emergency))
                         .addGap(18, 18, 18)
                         .addComponent(generate)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 33, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(30, 30, 30))
+                        .addGap(18, 18, 18)
+                        .addComponent(generateEmergency)
+                        .addGap(29, 29, 29))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addComponent(powerCut)
-                        .addGap(57, 57, 57))))
+                        .addGap(64, 64, 64))))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -505,14 +506,6 @@ public class Initiate extends javax.swing.JFrame {
             elevator.setChangeIncoming(false);
         }
         updatePeople = true;
-        if(elevator.getupDestinationSize()==0 && elevator.getdownDestinationSize()==0)
-        {
-            elevator.emergency=false;
-            elevator.tempFloors.forEach(fl -> {
-                    elevator.addNewDestination(fl);
-                 });
-            elevator.tempFloors.clear();
-        }
     }//GEN-LAST:event_inputPersonsWindowClosed
 
     private void enteringInputFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_enteringInputFocusGained
@@ -551,6 +544,7 @@ public class Initiate extends javax.swing.JFrame {
         if(powerCut.isSelected())
         {
             generate.setEnabled(false);
+            generateEmergency.setEnabled(false);
             elevator.PowerCut();
             elevator.setChangeIncoming(true);
             elevatorUp.setEnabled(false);
@@ -563,14 +557,15 @@ public class Initiate extends javax.swing.JFrame {
             elevator.setChangeIncoming(false);
             
             generate.setEnabled(true);
+            generateEmergency.setEnabled(true);
         }
        
     }//GEN-LAST:event_powerCutActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+    private void generateEmergencyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_generateEmergencyActionPerformed
         // TODO add your handling code here:
         elevator.getNewEmergencyFloor();
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_generateEmergencyActionPerformed
 
     /**
      * @param args the command line arguments
@@ -758,8 +753,8 @@ public class Initiate extends javax.swing.JFrame {
     private javax.swing.JTextField floor;
     private javax.swing.JLabel floorLabel;
     private javax.swing.JButton generate;
+    private javax.swing.JButton generateEmergency;
     private javax.swing.JDialog inputPersons;
-    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

@@ -145,22 +145,37 @@ public class Elevator extends ElevatorControl {
     public boolean moveAndCheckIfServed() {
         direction();
         
+        if(emergency && upDestinationFloors.size()==0 && downDestinationFloors.size()==0)
+        {
+            System.out.println("em set false");
+            emergency=false;
+            tempFloors.forEach(fl -> {
+                    addNewDestination(fl);
+                 });
+            tempFloors.clear();
+        }
+        
+        boolean ret = false;
+        
         if(direction == ElevatorDirection.ELEVATOR_UP){
             if(upDestinationFloors.first() == currentFloor){
-                return popUpDestionation();
+                ret = popUpDestionation();
             }else {             
                 floorUp();
             }
         }else if(direction == ElevatorDirection.ELEVATOR_DOWN){
             if(downDestinationFloors.first() == currentFloor){
-                return popDownDestionation();
+                ret = popDownDestionation();
             }else {
                 floorDown();
             }
         }else{
             //Do Nothing. Elevator is not moving.
         }
-        return false;
+        
+        
+        
+        return ret;
     }
 
     public ElevatorDirection getDirection(){

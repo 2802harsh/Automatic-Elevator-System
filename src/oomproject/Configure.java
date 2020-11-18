@@ -7,6 +7,9 @@ package oomproject;
 
 import java.util.regex.Pattern;
 
+import java.util.regex.Matcher;
+import oomproject.First;
+
 import backend.ElevatorControl;
 
 /**
@@ -22,7 +25,8 @@ public class Configure extends javax.swing.JFrame {
         initComponents();
         setVisible(true);
         setDefaultCloseOperation(javax.swing.JFrame.DISPOSE_ON_CLOSE);
-        validateNo.setVisible(false);
+        validateWeightNo.setVisible(false);
+        validateMailOk.setVisible(false);
         
         // Set display values 
         people.setSelectedItem(String.valueOf(ElevatorControl.getMaxPeople()));
@@ -48,10 +52,12 @@ public class Configure extends javax.swing.JFrame {
         peopleLabel = new javax.swing.JLabel();
         weight = new javax.swing.JTextField();
         update = new javax.swing.JButton();
-        validateOk = new javax.swing.JLabel();
-        validateNo = new javax.swing.JLabel();
+        validateWeightOk = new javax.swing.JLabel();
+        validateWeightNo = new javax.swing.JLabel();
         weightLabel1 = new javax.swing.JLabel();
         mail = new javax.swing.JTextField();
+        validateMailNo = new javax.swing.JLabel();
+        validateMailOk = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -123,15 +129,15 @@ public class Configure extends javax.swing.JFrame {
             }
         });
 
-        validateOk.setFont(new java.awt.Font("Dubai", 1, 12)); // NOI18N
-        validateOk.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        validateOk.setIcon(new javax.swing.ImageIcon(getClass().getResource("/oomproject/icons/check.png"))); // NOI18N
-        validateOk.setText("OK");
+        validateWeightOk.setFont(new java.awt.Font("Dubai", 1, 12)); // NOI18N
+        validateWeightOk.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        validateWeightOk.setIcon(new javax.swing.ImageIcon(getClass().getResource("/oomproject/icons/check.png"))); // NOI18N
+        validateWeightOk.setText("OK");
 
-        validateNo.setFont(new java.awt.Font("Dubai", 1, 12)); // NOI18N
-        validateNo.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
-        validateNo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/oomproject/icons/warning.png"))); // NOI18N
-        validateNo.setText("The value should be between 500 and 3000 ");
+        validateWeightNo.setFont(new java.awt.Font("Dubai", 1, 12)); // NOI18N
+        validateWeightNo.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
+        validateWeightNo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/oomproject/icons/warning.png"))); // NOI18N
+        validateWeightNo.setText("The value should be between 500 and 3000 ");
 
         weightLabel1.setFont(new java.awt.Font("Dubai", 1, 24)); // NOI18N
         weightLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/oomproject/icons/email.png"))); // NOI18N
@@ -139,44 +145,66 @@ public class Configure extends javax.swing.JFrame {
 
         mail.setBackground(new java.awt.Color(238, 238, 238));
         mail.setFont(new java.awt.Font("Dubai", 1, 14)); // NOI18N
+        mail.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                mailKeyReleased(evt);
+            }
+        });
+
+        validateMailNo.setFont(new java.awt.Font("Dubai", 1, 12)); // NOI18N
+        validateMailNo.setHorizontalAlignment(javax.swing.SwingConstants.TRAILING);
+        validateMailNo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/oomproject/icons/warning.png"))); // NOI18N
+        validateMailNo.setText("Not a valid e-mail Id");
+
+        validateMailOk.setFont(new java.awt.Font("Dubai", 1, 12)); // NOI18N
+        validateMailOk.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        validateMailOk.setIcon(new javax.swing.ImageIcon(getClass().getResource("/oomproject/icons/check.png"))); // NOI18N
+        validateMailOk.setText("OK");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addGap(269, 269, 269)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addGap(276, 276, 276)
                 .addComponent(update, javax.swing.GroupLayout.PREFERRED_SIZE, 112, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGap(69, 69, 69)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(weightLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGap(85, 85, 85)
-                        .addComponent(mail))
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(validateNo, javax.swing.GroupLayout.PREFERRED_SIZE, 520, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(validateMailNo, javax.swing.GroupLayout.PREFERRED_SIZE, 520, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(peopleLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGap(81, 81, 81)
-                        .addComponent(people, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(weightLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGap(107, 107, 107)
-                        .addComponent(weight, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(69, 69, 69)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(weightLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGap(85, 85, 85)
+                                .addComponent(mail))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                                .addGap(0, 23, Short.MAX_VALUE)
+                                .addComponent(validateWeightNo, javax.swing.GroupLayout.PREFERRED_SIZE, 520, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(peopleLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGap(81, 81, 81)
+                                .addComponent(people, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(weightLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGap(107, 107, 107)
+                                .addComponent(weight, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)))))
                 .addGap(18, 18, 18)
-                .addComponent(validateOk)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(validateWeightOk)
+                    .addComponent(validateMailOk))
                 .addGap(19, 19, 19))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jPanel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGap(34, 34, 34)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(peopleLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 57, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -185,19 +213,22 @@ public class Configure extends javax.swing.JFrame {
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGap(9, 9, 9)
-                                .addComponent(validateOk, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(validateWeightOk, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(weightLabel)
                             .addComponent(weight, javax.swing.GroupLayout.PREFERRED_SIZE, 43, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(validateNo)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 36, Short.MAX_VALUE)
-                        .addComponent(weightLabel1))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(mail, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addGap(33, 33, 33)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(validateWeightNo)
+                                .addGap(46, 46, 46)
+                                .addComponent(weightLabel1))
+                            .addComponent(validateMailOk, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addComponent(mail, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(validateMailNo)
+                .addGap(54, 54, 54)
                 .addComponent(update, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(39, 39, 39))
+                .addGap(19, 19, 19))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -217,9 +248,10 @@ public class Configure extends javax.swing.JFrame {
     private void updateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_updateActionPerformed
         // TODO add your handling code here:
         
-        if(validated == false)
+        if(weightValidated == false || emailValidated == false)
         {
             javax.swing.JOptionPane.showMessageDialog(update, "Wrong Input! Check Validation Message");
+            First.setCheckEmail(false);
             return;
         }
         String num = (String)people.getSelectedItem();
@@ -229,6 +261,9 @@ public class Configure extends javax.swing.JFrame {
         String wt = (String)weight.getText();
         Double maxWeight = Double.parseDouble(wt);
         ElevatorControl.setMaxWeight(maxWeight);
+        
+        First.setCheckEmail(true);
+        
         javax.swing.JOptionPane.showMessageDialog(update, "Updated !");
         
         String id = mail.getText();
@@ -241,33 +276,54 @@ public class Configure extends javax.swing.JFrame {
         
         if(! Pattern.matches(DOUBLE_PATTERN,wtText))
         {
-            validateNo.setText("Not a Value ");
-            validateNo.setVisible(true);
-            validated = false;
-            validateOk.setVisible(false);
+            validateWeightNo.setText("Not a Value ");
+            validateWeightNo.setVisible(true);
+            weightValidated = false;
+            validateWeightOk.setVisible(false);
         }
         else
         {
             Double wt = Double.parseDouble(wtText);
             if(wt<500 || wt>10000)
             {
-                validateOk.setVisible(false);
-                validateNo.setText("The value should be between 500 and 10000 ");
-                validateNo.setVisible(true);
-                validated = false;
+                validateWeightOk.setVisible(false);
+                validateWeightNo.setText("The value should be between 500 and 10000 ");
+                validateWeightNo.setVisible(true);
+                weightValidated = false;
             }
             else
             {
-                validateOk.setVisible(true);
-                validateNo.setVisible(false);
-                validated = true;
+                validateWeightOk.setVisible(true);
+                validateWeightNo.setVisible(false);
+                weightValidated = true;
             }
         }
         
     }//GEN-LAST:event_weightKeyReleased
+
+    private void mailKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_mailKeyReleased
+        // TODO add your handling code here:
+        String email = mail.getText();
+        pattern = Pattern.compile(EMAIL_REGEX, Pattern.CASE_INSENSITIVE);
+        matcher = pattern.matcher(email);
+        if(!matcher.matches())
+        {
+            validateMailNo.setVisible(true);
+            validateMailOk.setVisible(false);
+            emailValidated=false;
+
+        }
+        else
+        {
+            validateMailNo.setVisible(false);
+            validateMailOk.setVisible(true);
+            emailValidated=true;
+
+        }
+    }//GEN-LAST:event_mailKeyReleased
     public boolean getValidated()
     {
-        return validated;
+        return weightValidated;
     }
     /**
      * @param args the command line arguments
@@ -304,8 +360,13 @@ public class Configure extends javax.swing.JFrame {
         });
     }
     
-    private boolean validated = true;
+    private boolean weightValidated = true;
     final static String DOUBLE_PATTERN = "[-+]?[0-9]*\\.?[0-9]+([eE][-+]?[0-9]+)?";
+    
+    public boolean emailValidated = false;
+    private static final String EMAIL_REGEX = "^[\\w-\\+]+(\\.[\\w]+)*@[\\w-]+(\\.[\\w]+)*(\\.[a-z]{2,})$";
+    private static Pattern pattern;
+    private Matcher matcher;
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
@@ -316,8 +377,10 @@ public class Configure extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> people;
     private javax.swing.JLabel peopleLabel;
     private javax.swing.JButton update;
-    private javax.swing.JLabel validateNo;
-    private javax.swing.JLabel validateOk;
+    private javax.swing.JLabel validateMailNo;
+    private javax.swing.JLabel validateMailOk;
+    private javax.swing.JLabel validateWeightNo;
+    private javax.swing.JLabel validateWeightOk;
     private javax.swing.JTextField weight;
     private javax.swing.JLabel weightLabel;
     private javax.swing.JLabel weightLabel1;

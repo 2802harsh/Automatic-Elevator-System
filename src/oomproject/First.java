@@ -34,8 +34,8 @@ public class First extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         jTextArea1 = new javax.swing.JTextArea();
         configure = new javax.swing.JLabel();
-        initiate = new javax.swing.JLabel();
         log = new javax.swing.JLabel();
+        initiate = new javax.swing.JLabel();
 
         jLabel2.setFont(new java.awt.Font("Dubai", 1, 36)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(57, 62, 70));
@@ -82,23 +82,23 @@ public class First extends javax.swing.JFrame {
             }
         });
 
-        initiate.setFont(new java.awt.Font("Dubai", 1, 18)); // NOI18N
-        initiate.setIcon(new javax.swing.ImageIcon(getClass().getResource("/oomproject/icons/report.png"))); // NOI18N
-        initiate.setText("    Log Report");
-        initiate.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-        initiate.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                initiateMouseClicked(evt);
-            }
-        });
-
         log.setFont(new java.awt.Font("Dubai", 1, 18)); // NOI18N
-        log.setIcon(new javax.swing.ImageIcon(getClass().getResource("/oomproject/icons/elevator.png"))); // NOI18N
-        log.setText("    Initiate");
+        log.setIcon(new javax.swing.ImageIcon(getClass().getResource("/oomproject/icons/report.png"))); // NOI18N
+        log.setText("    Log Report");
         log.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
         log.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 logMouseClicked(evt);
+            }
+        });
+
+        initiate.setFont(new java.awt.Font("Dubai", 1, 18)); // NOI18N
+        initiate.setIcon(new javax.swing.ImageIcon(getClass().getResource("/oomproject/icons/elevator.png"))); // NOI18N
+        initiate.setText("    Initiate");
+        initiate.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        initiate.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                initiateMouseClicked(evt);
             }
         });
 
@@ -111,8 +111,8 @@ public class First extends javax.swing.JFrame {
                 .addGap(93, 93, 93)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addComponent(configure, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(initiate, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(log, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(log, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(initiate, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(107, 107, 107))
         );
         jPanel1Layout.setVerticalGroup(
@@ -122,9 +122,9 @@ public class First extends javax.swing.JFrame {
                 .addGap(91, 91, 91)
                 .addComponent(configure, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGap(108, 108, 108)
-                .addComponent(log, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGap(101, 101, 101)
                 .addComponent(initiate, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addGap(101, 101, 101)
+                .addComponent(log, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGap(87, 87, 87))
         );
 
@@ -147,15 +147,21 @@ public class First extends javax.swing.JFrame {
         new Configure();
     }//GEN-LAST:event_configureMouseClicked
 
-    private void logMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_logMouseClicked
-        // TODO add your handling code here:
-        new Initiate();
-    }//GEN-LAST:event_logMouseClicked
-
     private void initiateMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_initiateMouseClicked
         // TODO add your handling code here:
-        new LogReport();
+        if(checkEmail)
+            new Initiate();
+        
+        else
+        {
+            javax.swing.JOptionPane.showMessageDialog(initiate, "Set valid admin Email ID in Configure");
+        }
     }//GEN-LAST:event_initiateMouseClicked
+
+    private void logMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_logMouseClicked
+        // TODO add your handling code here:
+        new LogReport();
+    }//GEN-LAST:event_logMouseClicked
 
     /**
      * @param args the command line arguments
@@ -192,6 +198,12 @@ public class First extends javax.swing.JFrame {
         });
     }
 
+    private static boolean checkEmail = false;
+    
+    public static void setCheckEmail(boolean val)
+    {
+        checkEmail = val;
+    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel configure;
     private javax.swing.JLabel initiate;
