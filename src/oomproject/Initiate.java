@@ -18,6 +18,7 @@ import backend.enums.ElevatorDirection;
 import backend.Input;
 import backend.Log;
 import backend.Email;
+import java.awt.Color;
 
 /**
  *
@@ -238,9 +239,9 @@ public class Initiate extends javax.swing.JFrame {
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
                 .addGap(27, 27, 27)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 75, Short.MAX_VALUE)
+                .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 75, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, 39, Short.MAX_VALUE)
+                .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, 38, Short.MAX_VALUE)
                 .addGap(43, 43, 43))
         );
 
@@ -328,9 +329,9 @@ public class Initiate extends javax.swing.JFrame {
         elevatorUp.setIcon(new javax.swing.ImageIcon(getClass().getResource("/oomproject/icons/up-arrow.png"))); // NOI18N
         elevatorUp.setEnabled(false);
 
-        powerCut.setBackground(new java.awt.Color(45, 64, 89));
+        powerCut.setBackground(new java.awt.Color(102, 255, 0));
         powerCut.setFont(new java.awt.Font("Dubai", 1, 18)); // NOI18N
-        powerCut.setForeground(new java.awt.Color(238, 238, 238));
+        powerCut.setForeground(new java.awt.Color(0, 0, 153));
         powerCut.setText("Power Cut");
         powerCut.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -372,7 +373,7 @@ public class Initiate extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(peopleLabel, javax.swing.GroupLayout.DEFAULT_SIZE, 216, Short.MAX_VALUE)
+                            .addComponent(peopleLabel, javax.swing.GroupLayout.PREFERRED_SIZE, 1, Short.MAX_VALUE)
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(weightLabel, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addGap(43, 43, 43))
@@ -544,6 +545,7 @@ public class Initiate extends javax.swing.JFrame {
         if(powerCut.isSelected())
         {
             generate.setEnabled(false);
+            powerCut.setBackground(Color.RED);
             generateEmergency.setEnabled(false);
             elevator.PowerCut();
             elevator.setChangeIncoming(true);
@@ -551,11 +553,12 @@ public class Initiate extends javax.swing.JFrame {
             elevatorDown.setEnabled(false);
             
             Email email = new Email();
+            email.start();
         }
         else
         {
             elevator.setChangeIncoming(false);
-            
+            powerCut.setBackground(new Color(102,255,0));
             generate.setEnabled(true);
             generateEmergency.setEnabled(true);
         }
