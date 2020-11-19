@@ -504,3 +504,47 @@
 
 18-11-2020 | 20:06:44 : 	 At Floor-1 	 Enter-0 	 Exit-0 	 Weight-0.0
 
+18-11-2020 | 20:35:23 : 	 At Floor-0 	 Enter-1 	 Exit-0 	 Weight-109.03
+
+18-11-2020 | 20:35:29 : 	 At Floor-3 	 Enter-0 	 Exit-1 	 Weight-0.0
+
+19-11-2020 | 07:49:32 : 	 At Floor-9 	 Enter-0 	 Exit-0 	 Weight-0.0	(EMERGENCY)
+
+19-11-2020 | 07:49:39 : 	 At Floor-8 	 Enter-0 	 Exit-0 	 Weight-0.0
+
+19-11-2020 | 07:49:51 : 	 At Floor-11 	 Enter-0 	 Exit-0 	 Weight-0.0
+
+19-11-2020 | 08:00:23 : 	 POWER CUT
+
+19-11-2020 | 08:00:24 : 	 POWER BACKUP RECEIVED
+
+19-11-2020 | 08:01:41 : 	 POWER CUT
+
+19-11-2020 | 08:01:41 : 	 POWER BACKUP RECEIVED
+
+19-11-2020 | 08:02:31 : 	 POWER CUT
+
+19-11-2020 | 08:02:33 : 	 POWER BACKUP RECEIVED
+
+19-11-2020 | 20:16:57 : 	 At Floor-11 	 Enter-1 	 Exit-0 	 Weight-77.43
+
+19-11-2020 | 20:17:02 : 	 At Floor-13 	 Enter-1 	 Exit-0 	 Weight-160.34
+
+19-11-2020 | 20:17:15 : 	 At Floor-5 	 Enter-0 	 Exit-1 	 Weight-77.43
+
+19-11-2020 | 20:17:32 : 	 At Floor-3 	 Enter-0 	 Exit-0 	 Weight-77.43
+
+19-11-2020 | 20:17:40 : 	 At Floor-0 	 Enter-0 	 Exit-0 	 Weight-77.43	(EMERGENCY)
+
+19-11-2020 | 20:17:51 : 	 At Floor-5 	 Enter-1 	 Exit-0 	 Weight-152.71	(EMERGENCY)
+
+19-11-2020 | 20:18:00 : 	 At Floor-10 	 Enter-0 	 Exit-2 	 Weight-0.0	(EMERGENCY)
+
+19-11-2020 | 20:18:07 : 	 At Floor-9 	 Enter-0 	 Exit-0 	 Weight-0.0
+
+19-11-2020 | 20:18:08 : 	 POWER CUT
+
+19-11-2020 | 20:18:33 : 	 POWER BACKUP RECEIVED
+
+19-11-2020 | 20:18:36 : 	 At Floor-7 	 Enter-0 	 Exit-0 	 Weight-0.0
+

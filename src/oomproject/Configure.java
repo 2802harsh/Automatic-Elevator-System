@@ -8,6 +8,8 @@ package oomproject;
 import java.util.*;
 import java.util.regex.Pattern;
 
+import java.awt.event.*;
+
 import java.util.regex.Matcher;
 import oomproject.First;
 
@@ -36,6 +38,7 @@ public class Configure extends javax.swing.JFrame {
         people.setSelectedItem(String.valueOf(ElevatorControl.getMaxPeople()));
         weight.setText(String.valueOf(ElevatorControl.getMaxWeight()));
         mail.setText(String.valueOf(ElevatorControl.getMailId()));
+        checkValidMail();
         
         newIdWarning.setVisible(false);
     }
@@ -214,9 +217,6 @@ public class Configure extends javax.swing.JFrame {
         weight.setFont(new java.awt.Font("Dubai", 1, 18)); // NOI18N
         weight.setText("800");
         weight.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                weightKeyPressed(evt);
-            }
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 weightKeyReleased(evt);
             }
@@ -441,6 +441,9 @@ public class Configure extends javax.swing.JFrame {
 
     private void mailKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_mailKeyReleased
         // TODO add your handling code here:
+        checkValidMail();
+    }//GEN-LAST:event_mailKeyReleased
+    private void checkValidMail(){
         String email = mail.getText();
         pattern = Pattern.compile(EMAIL_REGEX, Pattern.CASE_INSENSITIVE);
         matcher = pattern.matcher(email);
@@ -458,8 +461,7 @@ public class Configure extends javax.swing.JFrame {
             emailValidated=true;
 
         }
-    }//GEN-LAST:event_mailKeyReleased
-
+    }
     private void emergencyIdButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_emergencyIdButtonActionPerformed
         // TODO add your handling code here:
         inputEmergencyIds.setVisible(true);
@@ -518,17 +520,9 @@ public class Configure extends javax.swing.JFrame {
         }
     }//GEN-LAST:event_inputEmergencyIdsWindowActivated
 
-    private void weightKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_weightKeyPressed
-        // TODO add your handling code here:
-        if(evt.getKeyCode() == java.awt.event.KeyEvent.VK_ENTER);
-        {
-            mail.requestFocusInWindow();
-        }
-    }//GEN-LAST:event_weightKeyPressed
-
     private void mailKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_mailKeyPressed
         // TODO add your handling code here:
-        if(evt.getKeyCode() == java.awt.event.KeyEvent.VK_ENTER)
+        if(evt.getKeyCode() == KeyEvent.VK_ENTER)
         {
             update();
         }

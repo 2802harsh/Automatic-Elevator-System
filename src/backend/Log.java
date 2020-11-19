@@ -19,15 +19,24 @@ public class Log {
     DateTimeFormatter format = DateTimeFormatter.ofPattern("dd-MM-yyyy | HH:mm:ss");
     File file = new File("src/Files/logReport.txt");
     FileWriter writer;
-    public Log(int floor, int enter, int exit, Double weight)
+    public Log(int floor, int enter, int exit, Double weight, boolean emergency)
     {
-        generateLog(floor, enter, exit,  weight);
+        generateLog(floor, enter, exit,  weight, emergency);
     }
-    private void generateLog(int floor, int enter, int exit, Double weight)
+    public Log(boolean cut)
+    {
+        powerCut(cut);
+    }
+    private void generateLog(int floor, int enter, int exit, Double weight, boolean emergency)
     {
         dateAndTime = LocalDateTime.now();
         formatDateAndTime = format.format(dateAndTime);
-        String report = formatDateAndTime + " : \t At Floor-"+floor+" \t Enter-"+enter+" \t Exit-"+exit+" \t Weight-"+weight+"\n\n";
+        String report = formatDateAndTime + " : \t At Floor-"+floor+" \t Enter-"+enter+" \t Exit-"+exit+" \t Weight-"+weight;
+        if(emergency)
+        {
+            report+="\t(EMERGENCY)";
+        }
+        report+="\n\n";
         
         try{
             file.createNewFile();
@@ -39,5 +48,26 @@ public class Log {
             System.out.println("An error occurred.");
         }
         
+    }
+    private void powerCut(boolean cut)
+    {
+        dateAndTime = LocalDateTime.now();
+        formatDateAndTime = format.format(dateAndTime);
+        String report;
+        if(cut)
+           report = formatDateAndTime + " : \t POWER CUT\n\n";
+        
+        else
+            report = formatDateAndTime + " : \t POWER BACKUP RECEIVED\n\n";
+        
+        try{
+            file.createNewFile();
+            PrintWriter pw = new PrintWriter(new FileOutputStream(file,true));
+            pw.append(report);
+            pw.close();
+        }
+        catch (IOException e) {
+            System.out.println("An error occurred.");
+        }
     }
 }

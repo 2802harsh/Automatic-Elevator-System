@@ -200,10 +200,18 @@ public class LogReport extends javax.swing.JFrame {
                   String data = reader.nextLine();
                   if(data.length() > 1 && data!="\n")
                   {
-                    if(data.substring(0,10).compareTo(format.format(from.getDate()))>=0 &&  data.substring(0,10).compareTo(format.format(to.getDate()))<=0)
-                    {
-                        report+="\n"+data+"\n";
-                    }
+                     try{
+                        Date d = format.parse(data.substring(0,10));
+                        Date fromDate = format.parse(format.format(from.getDate()));
+                        Date toDate = format.parse(format.format(to.getDate()));
+                        if(d.compareTo(fromDate)>=0 &&  d.compareTo(toDate)<=0)
+                        {
+                            report+="\n"+data+"\n";
+                        }
+                     }
+                     catch(ParseException e){
+                         System.out.println("Could not parse the date");
+                     }
                   }
                 }
                 reader.close();

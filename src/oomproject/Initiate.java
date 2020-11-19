@@ -39,6 +39,7 @@ public class Initiate extends javax.swing.JFrame {
         setVisible(true);
         setDefaultCloseOperation(javax.swing.JFrame.DISPOSE_ON_CLOSE);
         
+        inputPersons.setBounds(800,300,557,330);
         validateEmId.setVisible(false);
     }
 
@@ -628,6 +629,8 @@ public class Initiate extends javax.swing.JFrame {
             elevatorUp.setEnabled(false);
             elevatorDown.setEnabled(false);
             
+            Log log1 = new Log(true);
+            
             Email email = new Email();
             email.start();
         }
@@ -637,6 +640,8 @@ public class Initiate extends javax.swing.JFrame {
             powerCut.setBackground(new Color(102,255,0));
             generate.setEnabled(true);
             generateEmergency.setEnabled(true);
+            
+            Log log2 = new Log(false);
         }
        
     }//GEN-LAST:event_powerCutActionPerformed
@@ -751,7 +756,7 @@ public class Initiate extends javax.swing.JFrame {
         {
             overload.setEnabled(false);
             overloaded = false;
-            Log log = new Log(elevator.getCurrentFloor(),ent,ext,totalWeight);
+            Log log = new Log(elevator.getCurrentFloor(),ent,ext,totalWeight, elevator.emergencyStatus());
         }
     }
     
@@ -826,7 +831,6 @@ public class Initiate extends javax.swing.JFrame {
              if(changing & !powerCut.isSelected())
              {
                  inputPersons.setVisible(true);
-                 inputPersons.setBounds(800,300,557,330);
 //                 if(elevator.getupDestinationSize()==0 && elevator.getdownDestinationSize()==0)
 //                     elevator.emergency=false;
                  if(updatePeople)
