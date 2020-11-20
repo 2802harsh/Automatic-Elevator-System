@@ -273,12 +273,10 @@ public class Elevator extends ElevatorControl {
     
     public static void addEmergencyId(String id){
         emergencyIds.add(id);
-        System.out.println(emergencyIds);
     }
     
     public static void removeEmergencyId(int index){
         emergencyIds.remove(index);
-        System.out.println(emergencyIds);
     }
     
     public static List<String> getEmergencyIds()
