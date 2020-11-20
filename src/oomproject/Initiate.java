@@ -647,6 +647,7 @@ public class Initiate extends javax.swing.JFrame {
         // TODO add your handling code here:
         enterEmId.setVisible(true);
         enterEmId.setBounds(800,300,391,261);
+        emIdInput.setText("");
 //        if(validEmId)
 //        {
 //            elevator.getNewEmergencyFloor();
