@@ -12,13 +12,7 @@ import java.util.concurrent.ScheduledExecutorService;
 
 
 import backend.enums.ElevatorDirection;
-import backend.enums.ElevatorStatus;
         
-
-/**
- *
- * @author HP
- */
 public class Elevator extends ElevatorControl {
     
         Timer timer = new Timer();
@@ -43,7 +37,6 @@ public class Elevator extends ElevatorControl {
     
     protected static List<Double> weights = new ArrayList<Double>();
     
-    private ElevatorStatus elevatorStatus;
     ElevatorDirection direction;
     
     
@@ -64,10 +57,6 @@ public class Elevator extends ElevatorControl {
     
     public ElevatorDirection getElevatorDirection(){
         return direction;
-    }
-    
-    public ElevatorStatus getElevatorStatus(){
-        return this.elevatorStatus;
     }
     
     public boolean emergencyStatus(){
@@ -202,14 +191,6 @@ public class Elevator extends ElevatorControl {
 
     private boolean popUpDestionation() {
         upDestinationFloors.remove(upDestinationFloors.first());
-        if(emergency && upDestinationFloors.size()==0 && downDestinationFloors.size()==0)
-        {
-//            emergency=false;
-//            tempFloors.forEach(fl -> {
-//                    addNewDestination(fl);
-//                 });
-//            tempFloors.clear();
-        }
         if (upDestinationFloors.size() == 0) {
             direction = ElevatorDirection.ELEVATOR_NONE;
         }
@@ -218,14 +199,6 @@ public class Elevator extends ElevatorControl {
 
     private boolean popDownDestionation() {
         downDestinationFloors.remove(downDestinationFloors.first());
-        if(emergency && upDestinationFloors.size()==0 && downDestinationFloors.size()==0)
-        {
-//            emergency=false;
-//            tempFloors.forEach(fl -> {
-//                    addNewDestination(fl);
-//                 });
-//            tempFloors.clear();
-        }
         if(downDestinationFloors.size() == 0){
             direction = ElevatorDirection.ELEVATOR_NONE;
         }

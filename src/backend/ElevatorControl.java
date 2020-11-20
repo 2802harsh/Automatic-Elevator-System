@@ -5,10 +5,6 @@
  */
 package backend;
 
-/**
- *
- * @author HP
- */
 public class ElevatorControl {
     protected static int maxPeople = 5;
     protected static Double maxWeight = 800.0;

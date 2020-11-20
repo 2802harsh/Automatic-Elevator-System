@@ -9,10 +9,6 @@ import java.io.*;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
-/**
- *
- * @author HP
- */
 public class Log {
     LocalDateTime dateAndTime;
     String formatDateAndTime;
