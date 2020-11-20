@@ -13,10 +13,7 @@ import java.time.LocalDate;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
-/**
- *
- * @author HP
- */
+
 public class LogReport extends javax.swing.JFrame {
 
     ScheduledExecutorService executor = Executors.newScheduledThreadPool(1);

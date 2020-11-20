@@ -8,17 +8,13 @@ package backend;
 import java.util.*;
 import java.text.DecimalFormat;
 
-/**
- *
- * @author HP
- */
 public class Input {
     DecimalFormat df = new DecimalFormat("#.##");
     protected int enter;
     protected int exit;
     protected int totalFloors;
     protected static List<Double> weights = new ArrayList<Double>(); 
-    Set<Integer> floors = new HashSet<>(); 
+    protected Set<Integer> floors = new HashSet<>(); 
     protected boolean emergency=false;
     
     public Input(int enter, int exit, int totalFloors, boolean emergency)

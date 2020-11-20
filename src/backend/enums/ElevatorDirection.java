@@ -5,10 +5,6 @@
  */
 package backend.enums;
 
-/**
- *
- * @author HP
- */
 public enum ElevatorDirection {
     ELEVATOR_UP,
     ELEVATOR_DOWN,

@@ -18,10 +18,6 @@ import javax.swing.DefaultListModel;
 
 import backend.Elevator;
 
-/**
- *
- * @author HP
- */
 public class Configure extends javax.swing.JFrame {
 
     /**

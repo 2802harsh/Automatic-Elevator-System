@@ -9,10 +9,7 @@ import java.util.*;
 import javax.mail.*;  
 import javax.mail.internet.*;  
 import javax.activation.*;  
-/**
- *
- * @author HP
- */
+
 public class Email extends Thread {
     protected String mailId;
     protected String subject;

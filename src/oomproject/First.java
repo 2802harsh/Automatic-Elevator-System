@@ -5,10 +5,6 @@
  */
 package oomproject;
 
-/**
- *
- * @author HP
- */
 public class First extends javax.swing.JFrame {
 
     /**

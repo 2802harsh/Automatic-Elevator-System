@@ -15,7 +15,7 @@ import backend.enums.ElevatorDirection;
         
 public class Elevator extends ElevatorControl {
     
-        Timer timer = new Timer();
+    Timer timer = new Timer();
         
     protected String doorStatus = "Open";
     protected Double weight = 0.0;
@@ -33,11 +33,11 @@ public class Elevator extends ElevatorControl {
      */
     private TreeSet<Integer> upDestinationFloors;
     private TreeSet<Integer> downDestinationFloors;
-    public TreeSet<Integer> tempFloors;
+    private TreeSet<Integer> tempFloors;
     
     protected static List<Double> weights = new ArrayList<Double>();
     
-    ElevatorDirection direction;
+    protected ElevatorDirection direction;
     
     
     public Elevator() {
@@ -150,13 +150,13 @@ public class Elevator extends ElevatorControl {
         
         if(direction == ElevatorDirection.ELEVATOR_UP){
             if(upDestinationFloors.first() == currentFloor){
-                ret = popUpDestionation();
+                ret = popUpDestination();
             }else {             
                 floorUp();
             }
         }else if(direction == ElevatorDirection.ELEVATOR_DOWN){
             if(downDestinationFloors.first() == currentFloor){
-                ret = popDownDestionation();
+                ret = popDownDestination();
             }else {
                 floorDown();
             }
@@ -189,7 +189,7 @@ public class Elevator extends ElevatorControl {
         }
     }
 
-    private boolean popUpDestionation() {
+    private boolean popUpDestination() {
         upDestinationFloors.remove(upDestinationFloors.first());
         if (upDestinationFloors.size() == 0) {
             direction = ElevatorDirection.ELEVATOR_NONE;
@@ -197,7 +197,7 @@ public class Elevator extends ElevatorControl {
         return true;
     }
 
-    private boolean popDownDestionation() {
+    private boolean popDownDestination() {
         downDestinationFloors.remove(downDestinationFloors.first());
         if(downDestinationFloors.size() == 0){
             direction = ElevatorDirection.ELEVATOR_NONE;
