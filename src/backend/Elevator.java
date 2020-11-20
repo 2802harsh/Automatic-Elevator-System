@@ -247,6 +247,7 @@ public class Elevator extends ElevatorControl {
     {
         upDestinationFloors.clear();
         downDestinationFloors.clear();
+        tempFloors.clear();
         if(direction == ElevatorDirection.ELEVATOR_UP)
         {
             if(currentFloor!=totalFloors-1)

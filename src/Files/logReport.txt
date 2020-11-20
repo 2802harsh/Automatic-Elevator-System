@@ -622,3 +622,9 @@
 
 20-11-2020 | 22:22:05 : 	 At Floor-0 	 Enter-0 	 Exit-1 	 Weight-0.0	(EMERGENCY)
 
+20-11-2020 | 22:49:41 : 	 POWER CUT
+
+20-11-2020 | 22:49:45 : 	 POWER BACKUP RECEIVED
+
+20-11-2020 | 22:49:48 : 	 At Floor-6 	 Enter-0 	 Exit-0 	 Weight-0.0	(EMERGENCY)
+

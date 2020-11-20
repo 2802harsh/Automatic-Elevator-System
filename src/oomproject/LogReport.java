@@ -188,7 +188,8 @@ public class LogReport extends javax.swing.JFrame {
         @Override
         public void run()
         {
-            DateFormat format = new SimpleDateFormat("dd-mm-yyyy");
+            DateFormat format1 = new SimpleDateFormat("dd-mm-yyyy");
+            DateFormat formatter = new SimpleDateFormat("EEE MMM dd HH:mm:ss z yyyy");
             String report = "";
             try {
                 File file = new File("src/Files/logReport.txt");
@@ -198,16 +199,27 @@ public class LogReport extends javax.swing.JFrame {
                   if(data.length() > 1 && data!="\n")
                   {
                      try{
-                        Date d = format.parse(data.substring(0,10));
-                        Date fromDate = format.parse(format.format(from.getDate()));
-                        Date toDate = format.parse(format.format(to.getDate()));
-                        if(d.compareTo(fromDate)>=0 &&  d.compareTo(toDate)<=0)
+                       
+                        Date toD = (Date)formatter.parse(String.valueOf(to.getDate()));
+                        Date fromD = (Date)formatter.parse(String.valueOf(from.getDate()));
+                        Calendar calf = Calendar.getInstance();
+                        Calendar calt = Calendar.getInstance();
+                        calf.setTime(fromD);
+                        calt.setTime(toD);
+                        String fromDate = calf.get(Calendar.DATE) + "-" + (calf.get(Calendar.MONTH) + 1) + "-" +         calf.get(Calendar.YEAR);
+                        String toDate = calt.get(Calendar.DATE) + "-" + (calt.get(Calendar.MONTH) + 1) + "-" +         calt.get(Calendar.YEAR);
+//             
+                        String d = (data.substring(0,10));
+                        Date fD=new SimpleDateFormat("dd-MM-yyyy").parse(fromDate);
+                        Date tD=new SimpleDateFormat("dd-MM-yyyy").parse(toDate);
+                        Date dD=new SimpleDateFormat("dd-MM-yyyy").parse(d);
+                        if(dD.compareTo(fD)>=0 &&  dD.compareTo(tD)<=0)
                         {
                             report+="\n"+data+"\n";
                         }
                      }
                      catch(ParseException e){
-                         System.out.println("Could not parse the date");
+                         report="Set Valid Date";
                      }
                   }
                 }
